@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jardesc>
+<jar path="E:/Java/.jar"/>
+<options buildIfNeeded="true" compress="true" descriptionLocation="/2016QQ/QQ.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="false" overwrite="false" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+<storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+<selectedProjects/>
+<manifest generateManifest="true" mainClassHandleIdentifier="=2016QQ/src&lt;MyQQ{LongQQ.java[LongQQ" manifestLocation="" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
+<sealing sealJar="false">
+<packagesToSeal/>
+<packagesToUnSeal/>
+</sealing>
+</manifest>
+<selectedElements exportClassFiles="false" exportJavaFiles="false" exportOutputFolder="true">
+<file path="/2016QQ/account.dat"/>
+<javaElement handleIdentifier="=2016QQ/bq"/>
+<javaElement handleIdentifier="=2016QQ/tubiao"/>
+<file path="/2016QQ/.classpath"/>
+<file path="/2016QQ/QQ音乐.lnk"/>
+<file path="/2016QQ/.project"/>
+<javaElement handleIdentifier="=2016QQ/sound"/>
+<file path="/2016QQ/QQ游戏.lnk"/>
+<javaElement handleIdentifier="=2016QQ/src"/>
+</selectedElements>
+</jardesc>

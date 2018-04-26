@@ -1,0 +1,132 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gs.dao.HkbDAO">
+
+    <sql id="searchHkb">
+        <if test="query != null and query.state != null">
+            and h.state = #{query.state}
+        </if>
+        <if test="query != null and query.baid != null">
+            and h.baid = #{query.baid}
+        </if>
+        <if test="query != null and query.uid != null">
+            and h.uid = #{query.uid}
+        </if>
+        <if test="query != null and query.startTime != null and query.startTime != ''">
+            and h.rtime <![CDATA[>=]]> #{query.startTime}
+        </if>
+        <if test="query != null and query.endTime != null and query.endTime != ''">
+            and h.rtime <![CDATA[<=]]> #{query.endTime}
+        </if>
+    </sql>
+    <insert id="save" parameterType="hkb">
+        <![CDATA[
+          insert into t_hkb(uid,rname,cpname,tnum,ytime,bzname,ybx,ylx,ybj,state,baid,huid)
+          values(#{uid},#{rname},#{cpname},#{tnum},#{ytime},#{bzname},#{ybx},#{ylx},#{ybj},#{state},#{baid},#{huid} )
+        ]]>
+    </insert>
+
+    <insert id="saveList" parameterType="list">
+        <![CDATA[
+      INSERT INTO t_hkb(uid, rname, cpname, bzname,huid,
+      ybx, ylx, ybj, tnum, baid, ytime, state, djq
+      ) VALUES
+    ]]>
+        <foreach collection="list" item="item" index="index" separator="," >
+            (#{item.uid},#{item.rname},#{item.cpname},#{item.bzname},#{item.huid}
+            ,#{item.ybx},#{item.ylx},#{item.ybj},#{item.tnum},#{item.baid},#{item.ytime},#{item.state},#{item.djq})
+        </foreach>
+    </insert>
+
+    <select id="listPagerCriteria" resultType="com.gs.bean.Hkb">
+        <![CDATA[
+		select * from t_hkb
+		where baid = #{query.baid}
+		]]>
+        limit #{pager.beginIndex}, #{pager.pageSize}
+    </select>
+
+    <select id="countCriteria" resultType="long">
+        <![CDATA[
+		select count(hkid) from t_hkb
+		where baid = #{query.baid}
+		]]>
+    </select>
+
+    <select id="list" resultType="com.gs.vo.HkbVO">
+        <![CDATA[
+		select h.hkid,h.baid,h.cpname,h.bzname,h.rname,h.ytime,h.rtime,h.ybx,h.rbx,h.ylx,h.yfx,h.yucount,h.huid,h.djq,h.state,
+		 hu.rname as hname,bd.ytmoney as ytmoney,bd.nprofit as nprofit
+		 from t_hkb h,t_borrowdetail bd,t_huser hu
+		where h.baid = bd.baid
+		]]>
+        <include refid="searchHkb" />
+        order by h.state,h.ytime
+        limit #{pager.beginIndex}, #{pager.pageSize}
+    </select>
+
+    <select id="count" resultType="long">
+		select count(h.baid)
+        from t_hkb h,t_borrowdetail bd,t_huser hu
+        where h.baid = bd.baid
+        <include refid="searchHkb" />
+    </select>
+
+    <select id="getById" parameterType="long" resultType="com.gs.bean.Hkb">
+        select * from t_hkb where hkid = #{hkid};
+    </select>
+
+    <update id="update">
+        <![CDATA[
+         update t_hkb
+        ]]>
+        <set>
+            <if test="rbx != null and rbx!=''">
+                rbx = #{rbx},
+            </if>
+            <if test="rlx != null and rlx!=''">
+                rlx = #{rlx},
+            </if>
+            <if test="rbj != null and rbj!=''">
+                rbj = #{rbj},
+            </if>
+            <if test="rnum != null and rnum!=''">
+                rnum = #{rnum},
+            </if>
+            <if test="rtime != null">
+                rtime = #{rtime},
+            </if>
+            <if test="state != null and state!=''">
+                state = #{state},
+            </if>
+            <if test="rfx != null and rfx!=''">
+                rfx = #{rfx},
+            </if>
+            <if test="yucount != null and yucount!=''">
+                yucount = #{yucount},
+            </if>
+            <if test="yustartime != null and yustartime!=''">
+                yustartime = #{yustartime},
+            </if>
+            <if test="iszd != null and iszd!=''">
+                iszd = #{iszd},
+            </if>
+        </set>
+        where 1 = 1
+        <if test="hkid != null and hkid != ''">
+            and hkid = #{hkid}
+        </if>
+        <if test="uid != null and uid != ''">
+            and uid = #{uid}
+        </if>
+    </update>
+
+    <select id="listByBaid" resultType="hkb">
+        select * from t_hkb where uid = #{query.uid} and state = 1
+        <if test="query != null and query.iszd!=null">
+            and iszd = #{query.iszd}
+        </if>
+    </select>
+</mapper>

@@ -1,0 +1,66 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gs.dao.JurDAO">
+    <insert id="insertInfoBatch" parameterType="java.util.List">
+        insert into t_jur(jurl,content) values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.jurl},#{item.content})
+        </foreach>
+    </insert>
+
+    <select id="listAll" resultType="com.gs.bean.Jur">
+        <![CDATA[
+           select * from t_jur
+        ]]>
+    </select>
+
+    <delete id="removeById" parameterType="long">
+        <![CDATA[
+           delete from t_jur where jid = #{jid}
+        ]]>
+    </delete>
+
+    <select id="listJurs" parameterType="string" resultType="String">
+        select j.jurl from t_jur j, t_huser h, t_roleuser ru, t_rolejur rj where h.huid = ru.huid and ru.rid = rj.rid and j.jid = rj.jid and h.phone = #{phone}
+    </select>
+
+    <select id="listJur" parameterType="long" resultType="Long">
+        select j.jid from t_jur j, t_role r, t_rolejur rj where r.rid = rj.rid and j.jid = rj.jid and r.rid = #{rid}
+    </select>
+
+    <update id="update" parameterType="jur">
+        <![CDATA[
+            update t_jur
+        ]]>
+        <set>
+            <if test="jurl != null">
+                jurl = #{jurl},
+            </if>
+            <if test="content != null">
+                content = #{content},
+            </if>
+        </set>
+        where jid = #{jid}
+    </update>
+
+    <sql id="jur_criteria">
+        <if test="jur != null and jur.jurl != null and jur.jurl != ''">
+            and j.jurl like concat('%', #{jur.jurl} ,'%')
+        </if>
+        <if test="jur != null and jur.content != null and jur.content != ''">
+            and j.content like concat('%', #{jur.content} ,'%')
+        </if>
+    </sql>
+    <select id="listPagerCriteria" resultType="com.gs.bean.Jur">
+        select j.jid,j.jurl,j.content from t_jur j where j.jid=jid
+        <include refid="jur_criteria"/>
+        limit #{pager.beginIndex},#{pager.pageSize}
+    </select>
+
+    <select id="countCriteria" resultType="Long">
+        select count(j.jid) from t_jur j where j.jid=jid
+        <include refid="jur_criteria"/>
+    </select>
+</mapper>

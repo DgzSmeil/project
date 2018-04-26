@@ -1,0 +1,57 @@
+.ppt{ width: 100%;
+    height: 340px;
+    position: relative;
+    overflow: hidden;
+}
+.ppt img{
+    width: 1920px;
+}
+.ppt .benn{
+    width: 1920px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -960px;
+    height: 340px;
+}
+.pptNum{ position: absolute;
+    bottom: 10px;
+    left: 50%;
+    margin-left:-60px;
+    z-index: 9999; }
+.pptNum span{ text-indent: 50px;
+    overflow: hidden;
+    width: 12px;
+    height: 12px;
+    background-color: #fff;
+    display: block;
+    border-radius: 50%;
+    opacity: .5;
+    filter: progid: DXImageTransform.Microsoft.Alpha(opacity=50);
+    float: left;
+    margin: 0 8px;
+    transition: opacity 1s;
+    -moz-transition: opacity 1s;
+    -webkit-transition: opacity 1s;
+    -o-transition: opacity 1s;
+    box-shadow: 0 0 3px #272727; }
+.pptNum .normal{ text-indent: 50px;
+    overflow: hidden;
+    width: 12px;
+    height: 12px;
+    background-color: #fff;
+    display: block;
+    border-radius: 50%;
+    opacity: .5;
+    filter: progid: DXImageTransform.Microsoft.Alpha(opacity=50);
+    float: left;
+    margin: 0 8px;
+    transition: opacity 1s;
+    -moz-transition: opacity 1s;
+    -webkit-transition: opacity 1s;
+    -o-transition: opacity 1s;
+    box-shadow: 0 0 3px #272727; }
+.pptNum .cur{
+    opacity: 1;
+    filter: progid: DXImageTransform.Microsoft.Alpha(opacity=100);
+}

@@ -1,0 +1,102 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gs.dao.UserTicketDAO">
+
+    <sql id="uTicket_query_common">
+        from t_userticket ut, t_ticket t, t_user u
+        where ut.kid = t.kid
+        and ut.uid = u.uid
+    </sql>
+
+    <sql id="uTicket_query_criteria">
+        <if test="query != null and query.uid != '' and  query.uid != null">
+            and u.uid = #{query.uid}
+        </if>
+        <if test="query != null and query.type != '' and  query.type != null">
+            and t.type = #{query.type}
+        </if>
+        <if test="query != null and query.uname != ''  and  query.uname != null">
+            and u.uname like concat('%', #{query.uname}, '%')
+        </if>
+        <if test="query != null and query.phone != '' and  query.phone != null">
+            and u.phone = #{query.phone}
+        </if>
+        <if test="query != null and query.tkmoney != '' and  query.tkmoney != null">
+            and t.tkmoney <![CDATA[<=]]> #{query.tkmoney}
+        </if>
+        <if test="query != null and query.tktime != '' and  query.tktime != null">
+            and ut.tktime <![CDATA[<=]]> #{query.tktime}
+        </if>
+        <if test="query != null and query.yxtime != '' and  query.yxtime != null">
+            and t.tktime <![CDATA[<=]]> #{query.yxtime}
+        </if>
+        <if test="query != null and query.status != '' and query.status != null">
+            and ut.status = #{query.status}
+        </if>
+    </sql>
+
+    <select id="listPagerCriteria" resultType="com.gs.vo.UserTicketVO">
+        select ut.ukid, u.uname, u.phone, t.type, t.tkmoney, ut.tktime as yxtime, t.tktime
+        <include refid="uTicket_query_common"/>
+        <include refid="uTicket_query_criteria"/>
+        limit #{pager.beginIndex}, #{pager.pageSize}
+    </select>
+
+    <select id="countCriteria" resultType="long">
+        select count(ut.ukid)
+        <include refid="uTicket_query_common"/>
+        <include refid="uTicket_query_criteria"/>
+    </select>
+
+    <select id="getCount" resultType="long">
+        select count(ut.ukid)
+        <include refid="uTicket_query_common"/>
+        and u.uid = #{uid}
+        and t.type = #{type}
+    </select>
+
+    <select id="getTicket" resultType="com.gs.vo.UserTicketVO">
+        select ut.ukid, t.kid, t.type, t.tkmoney
+        <include refid="uTicket_query_common"/>
+        and u.uid = #{uid}
+        and ut.status = #{status}
+    </select>
+
+    <insert id="save" parameterType="userTicket">
+        <![CDATA[
+            insert into t_userticket(uid, kid, tktime, status)
+            values(#{uid}, #{kid}, #{tktime}, #{status})
+        ]]>
+    </insert>
+
+    <select id="getById" parameterType="long" resultType="com.gs.vo.UserTicketVO">
+        select ut.ukid, u.uname, t.type, t.tkmoney, ut.tktime as yxtime, t.tktime
+        <include refid="uTicket_query_common"/>
+        and u.uid = #{id}
+    </select>
+
+    <delete id="removeById" parameterType="long">
+        <![CDATA[
+          delete from t_userticket where ukid = #{ukid}
+        ]]>
+    </delete>
+
+    <select id="getByukid" resultType="com.gs.vo.UserTicketVO">
+        select ut.*,t.tkmoney as tkmoney,t.type as type from t_userticket ut,t_ticket t where ut.kid= t.kid and ut.ukid = #{ukid};
+    </select>
+
+    <update id="update" parameterType="userTicket">
+        update t_userticket set status = #{status} where ukid = #{ukid};
+    </update>
+
+    <select id="listAll" resultType="userTicket">
+        select * from t_userticket where status = 1;
+    </select>
+
+</mapper>
+
+
+
+

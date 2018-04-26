@@ -1,0 +1,72 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gs.dao.LogCzzDAO">
+
+
+    <sql id="common_where">
+        <if test="obj.rname != null and obj.rname != ''">
+            and u.rname = #{obj.rname}
+        </if>
+
+        <if test="obj.phone != null and obj.phone != ''">
+            and u.phone = #{obj.phone}
+        </if>
+
+        <if test="obj.bankcard != null and obj.bankcard != ''">
+            and l.bankcard = #{obj.bankcard}
+        </if>
+
+        <if test="obj.banktype != null and obj.banktype != ''">
+            and l.banktype = #{obj.banktype}
+        </if>
+
+        <if test="obj != null and obj.startTime != null and obj.startTime != '' and obj.endTime != null and obj.endTime != ''">
+            and l.date between #{obj.startTime} and #{obj.endTime}
+        </if>
+    </sql>
+
+    <sql id="common_form">
+         from t_logczz l,t_user u
+        where l.uid = u.uid
+        <if test="obj != null and obj.uid !=null ">
+            and u.uid=#{obj.uid}
+        </if>
+    </sql>
+
+    <insert id="save" parameterType="com.gs.bean.LogCzz">
+        <![CDATA[
+          insert into t_logczz(uid, bankcard, banktype, money, date, state) values
+          (#{uid},#{bankcard},#{banktype},#{money},#{date},#{state})
+        ]]>
+    </insert>
+
+    <select id="getById" resultType="long">
+        <![CDATA[
+		select * from t_logczz where id=#{id}
+		]]>
+    </select>
+
+    <select id="listAllById" parameterType="long"  resultType="com.gs.vo.LogCzzVo">
+        <![CDATA[
+		select l.id,u.rname,l.bankcard,l.banktype,l.date,l.state from t_logczz l,t_user u
+        where l.uid = u.uid and u.uid=#{id};
+		]]>
+    </select>
+
+    <select id="listPagerCriteria" resultType="com.gs.vo.LogCzzVo">
+          select l.id,u.rname,u.phone,l.money,l.bankcard,l.banktype,l.date,l.state
+        <include refid="common_form"/>
+         <include refid="common_where"/>
+         limit #{pager.beginIndex}, #{pager.pageSize};
+    </select>
+
+    <select id="countCriteria" parameterType="object" resultType="long">
+        select count(id)
+        <include refid="common_form"/>
+        <include refid="common_where"/>
+    </select>
+
+
+</mapper>

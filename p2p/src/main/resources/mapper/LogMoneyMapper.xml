@@ -1,0 +1,41 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gs.dao.LogMoneyDAO">
+    <sql id="logMoney_query_common">
+        <if test="query != null and query.type != null">
+            and t_logmoney.type = #{query.type}
+        </if>
+        <if test="query != null and query.startTime != null and query.startTime != ''">
+            and t_logmoney.date <![CDATA[>=]]> #{query.startTime}
+        </if>
+        <if test="query != null and query.endTime != null and query.endTime != ''">
+            and t_logmoney.date <![CDATA[<=]]> #{query.endTime}
+        </if>
+    </sql>
+
+    <select id="listPagerCriteria" resultType="com.gs.bean.LogMoney">
+        <![CDATA[
+		select * from t_logmoney
+		where uid = #{query.uid}
+		]]>
+        <include refid="logMoney_query_common" />
+        limit #{pager.beginIndex}, #{pager.pageSize}
+    </select>
+
+    <select id="countCriteria" resultType="long">
+        <![CDATA[
+		select count(id) from t_logmoney
+		where uid = #{query.uid}
+		]]>
+        <include refid="logMoney_query_common" />
+    </select>
+
+    <insert id="save" parameterType="logMoney">
+        <![CDATA[
+          insert into t_logmoney(uid, type, `in`, `out`, `date`) values(#{uid},#{type},#{in},#{out},CURRENT_TIMESTAMP)
+        ]]>
+    </insert>
+
+</mapper>

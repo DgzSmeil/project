@@ -1,0 +1,55 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.gs.dao.RecommendDAO">
+
+    <select id="countTzm" resultType="Integer">
+        select count(uid) from t_user where tzm = #{tzm};
+    </select>
+    <select id="getTzm" resultType="String">
+        select uid,rname from t_user where tzm = #{tzm};
+    </select>
+    <insert id="save" parameterType="recommend">
+        insert into t_recommend(tid,tname,uid,rname,date) values(#{tid},#{tname},#{uid},#{rname},now())
+    </insert>
+    <sql id="cash_query_criteria">
+        <if test="query != null and query.uid != null and query.uid!=''">
+            and r.tid = #{query.uid}
+        </if>
+        <if test="query != null and query.tname != null and query.tname!=''">
+            and r.tname like concat('%', #{query.tname}, '%')
+        </if>
+        <if test="query != null and query.rname != null and query.rname!=''">
+            and r.rname like concat('%', #{query.rname}, '%')
+        </if>
+        <if test="query != null and query.startTime != null and query.startTime != ''">
+            and r.`date` <![CDATA[>=]]> #{query.startTime}
+        </if>
+        <if test="query != null and query.endTime != null and query.endTime != ''">
+            and r.`date`<![CDATA[<=]]> #{query.endTime}
+        </if>
+    </sql>
+    <select id="listPagerCriteria" resultType="recommend">
+        select r.id,r.tid,r.tname,r.uid,r.rname,r.`date`,u.tzm from t_recommend r ,t_user u where 1=1 and r.tid=u.uid
+        <include refid="cash_query_criteria"/>
+        order by `date` desc limit #{pager.beginIndex}, #{pager.pageSize}
+    </select>
+    <select id="countCriteria" resultType="long">
+        select count(id) from t_recommend r ,t_user u where 1=1 and r.uid=u.uid
+        <include refid="cash_query_criteria"/>
+    </select>
+    <delete id="remove" parameterType="recommend">
+        <![CDATA[
+          delete from t_recommend where id=#{id}
+        ]]>
+    </delete>
+    <!--推荐排行榜-->
+    <select id="recommendRanking" resultType="com.gs.vo.RecommendVO">
+     select tid,tname,count(tid) as ci from t_recommend
+     where DateDiff(`date`,now())=0
+     group by tid having count(tid)>=1
+     order by ci desc limit 0,10
+    </select>
+</mapper>

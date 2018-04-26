@@ -1,0 +1,68 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gs.dao.MediaDAO">
+
+    <insert id="save" parameterType="com.gs.bean.Media">
+        <![CDATA[
+			insert into t_media(title, content, pic, date, url)
+			values(#{title},#{content},#{pic},#{date},#{url})
+		]]>
+    </insert>
+
+    <sql id="common_where">
+        <if test="query != null and query.title != null and query.title != ''">
+            and title like concat('%', #{query.title}, '%')
+        </if>
+
+        <if test="query != null and query.starttime != null and query.starttime != ''">
+            and date  <![CDATA[ <= ]]> #{query.starttime}
+        </if>
+    </sql>
+
+    <update id="update" parameterType="object">
+        update t_media
+        <set>
+            <if test="title != null and title != ''">
+                title = #{title},
+            </if>
+            <if test="content != null and content != ''">
+                content = #{content},
+            </if>
+            <if test="pic != null and pic != ''">
+                pic = #{pic},
+            </if>
+            <if test="date != null and date != ''">
+                date = #{date},
+            </if>
+            <if test="url != null and url != ''">
+                url = #{url},
+            </if>
+        </set>
+        where mid = #{mid};
+    </update>
+    <select id="listAll" resultType="object">
+        <![CDATA[
+		select * from t_media order by date desc ;
+		]]>
+    </select>
+    <select id="mediaPage" parameterType="date" resultType="com.gs.bean.Media">
+        <![CDATA[
+          select *,max(date) from t_media where date<=#{date}  group by mid  limit 0,3;
+        ]]>
+    </select>
+    <select id="getById" parameterType="long"  resultType="com.gs.bean.Media">
+        <![CDATA[
+		select * from t_media where mid = #{mid};
+		]]>
+    </select>
+    <select id="listPagerCriteria" resultType="com.gs.bean.Media">
+        select * from t_media where 1=1 <include refid="common_where"/> order by date desc
+        limit #{pager.beginIndex}, #{pager.pageSize}
+    </select>
+    <select id="countCriteria" resultType="long">
+        select count(mid)
+        from t_media where 1=1 <include refid="common_where"/>;
+    </select>
+</mapper>

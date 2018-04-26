@@ -1,0 +1,99 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gs.dao.HUserDAO">
+    <insert id="save">
+        <selectKey keyProperty="huid" order="AFTER" resultType="Long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        <![CDATA[
+            insert into t_huser(rname,sex,phone,pwd,huname,email) values (#{rname},#{sex},#{phone},#{pwd},#{huname},#{email});
+        ]]>
+    </insert>
+
+    <select id="getByPhonePwd" resultType="com.gs.bean.HUser">
+        <![CDATA[
+          select huid, rname, sex, phone, pwd, huname, email
+          from t_huser where phone = #{phone} and pwd = #{pwd}
+        ]]>
+    </select>
+
+    <select id="listAll" resultType="hUser">
+        select * from t_huser
+    </select>
+
+    <delete id="removeById" parameterType="long">
+        delete from t_huser where huid = #{huid}
+    </delete>
+
+    <update id="update" parameterType="com.gs.bean.HUser">
+        <![CDATA[
+          update t_huser
+        ]]>
+        <set>
+            <if test="rname != null">
+                rname = #{rname},
+            </if>
+            <if test="sex != null">
+                sex = #{sex},
+            </if>
+            <if test="phone != null">
+                phone = #{phone},
+            </if>
+            <if test="pwd != null">
+                pwd = #{pwd},
+            </if>
+            <if test="huname != null">
+                huname = #{huname},
+            </if>
+            <if test="email != null">
+                email = #{email},
+            </if>
+        </set>
+        where huid = #{huid}
+    </update>
+
+
+
+    <sql id="hUserQuery_criteria">
+        <if test="query != null and query.rname != null and query.rname != ''">
+            and h.rname like concat('%', #{query.rname} ,'%')
+        </if>
+        <if test="query != null and query.phone != null and query.phone != ''">
+            and h.phone like concat('%', #{query.phone} ,'%')
+        </if>
+    </sql>
+
+    <select id="listPagerCriteria" resultType="com.gs.bean.HUser">
+        select r.rid,h.huid as huid,h.rname as rname,h.sex as sex,h.phone as phone,h.huname as huname,h.email as email,ru.ruid as ruid from t_role r,t_roleuser ru,t_huser h
+        where ru.ruid = ruid and ru.rid = r.rid and ru.huid = h.huid and r.rid = 2
+        <include refid="hUserQuery_criteria"/>
+        limit #{pager.beginIndex},#{pager.pageSize}
+    </select>
+
+    <select id="countCriteria" resultType="Long">
+        select count(h.huid) from t_role r,t_roleuser ru,t_huser h
+        where ru.ruid = ruid and ru.rid = r.rid and ru.huid = h.huid and r.rid = 2
+        <include refid="hUserQuery_criteria"/>
+    </select>
+
+    <select id="listPagerCriteriaE" resultType="com.gs.bean.HUser">
+        select r.rid,h.huid as huid,h.rname as rname,h.sex as sex,h.phone as phone,h.huname as huname,h.email as email,ru.ruid as ruid from t_role r,t_roleuser ru,t_huser h
+        where ru.ruid = ruid and ru.rid = r.rid and ru.huid = h.huid and r.rid = 3
+        <include refid="hUserQuery_criteria"/>
+        limit #{pager.beginIndex},#{pager.pageSize}
+    </select>
+
+    <select id="countCriteriaE" resultType="Long">
+        select count(h.huid) from t_role r,t_roleuser ru,t_huser h
+        where ru.ruid = ruid and ru.rid = r.rid and ru.huid = h.huid and r.rid = 3
+        <include refid="hUserQuery_criteria"/>
+    </select>
+
+    <select id="getById" resultType="com.gs.bean.HUser">
+        <![CDATA[
+          select huid, rname, sex, phone, huname, email from t_huser where huid = #{huid}
+        ]]>
+    </select>
+</mapper>

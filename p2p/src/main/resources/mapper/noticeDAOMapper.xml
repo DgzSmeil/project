@@ -1,0 +1,68 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gs.dao.noticeDAO">
+
+
+
+    <insert id="save" parameterType="notice">
+        <![CDATA[
+        insert into t_notice (title,content,date) values(#{title},#{content},#{date})
+        ]]>
+    </insert>
+
+    <delete id="removeById" parameterType="long">
+        <![CDATA[
+          delete from t_notice where nid = #{nid}
+        ]]>
+    </delete>
+
+    <update id="update" parameterType="object">
+          update t_notice
+          <set>
+              <if test="title != null and title != ''">
+                  title = #{title},
+              </if>
+              <if test="content != null and content != ''">
+                  content = #{content},
+              </if>
+              <if test="date != null and date != ''">
+                  date = #{date},
+              </if>
+          </set>
+        where nid = #{nid}
+    </update>
+    <sql id="common_where">
+
+        <if test="obj != null and obj.startTime != null and obj.startTime != '' and obj.endTime != null and obj.endTime != ''">
+            and date between #{obj.startTime} and #{obj.endTime}
+        </if>
+        <if test=" obj != null and obj.title != null and obj.title != ''">
+           and title  like concat('%', #{obj.title}, '%')
+        </if>
+    </sql>
+    <select id="listPagerCriteria" resultType="notice">
+        select * from t_notice where 1=1
+        <include refid="common_where"/>
+        limit  #{pager.beginIndex}, #{pager.pageSize};
+    </select>
+
+    <select id="countCriteria" resultType="long">
+        select count(nid) from t_notice where 1=1
+        <include refid="common_where"/>
+    </select>
+
+    <select id="noticeIndex" parameterType="date" resultType="notice">
+        <![CDATA[
+          select *,max(date) from t_notice where date<=#{date} group by nid  limit 0,4;
+        ]]>
+    </select>
+
+    <select id="getById" parameterType="long" resultType="notice">
+        <![CDATA[
+          select * from t_notice where nid=#{id}
+        ]]>
+    </select>
+
+</mapper>

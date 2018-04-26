@@ -1,0 +1,60 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gs.dao.TicketDAO">
+
+    <sql id="ticket_query_criteria">
+        <if test="query != null and query.type != null and query.type != ''">
+            and type = #{query.type}
+        </if>
+        <if test="query != null and query.tkmoney != null and query.tkmoney != ''">
+            and tkmoney <![CDATA[<=]]> #{query.tkmoney}
+        </if>
+        <if test="query != null and query.tktime != null and query.tktime != ''">
+            and tktime <![CDATA[<=]]> #{query.tktime}
+        </if>
+    </sql>
+
+    <select id="listPagerCriteria" resultType="com.gs.bean.Ticket">
+          select kid,type,tkmoney,tktime from t_ticket where 1=1
+          <include refid="ticket_query_criteria"/>
+          limit #{pager.beginIndex}, #{pager.pageSize}
+    </select>
+    <select id="countCriteria" resultType="long">
+        select count(kid) from t_ticket where 1=1
+        <include refid="ticket_query_criteria"/>
+    </select>
+
+
+    <insert id="save" parameterType="ticket">
+        <![CDATA[
+			insert into t_ticket(type, tkmoney, tktime)
+			values(#{type}, #{tkmoney}, #{tktime})
+		]]>
+    </insert>
+
+    <update id="update" parameterType="ticket">
+        <![CDATA[
+            update t_ticket
+        ]]>
+        <set>
+            <if test="type !=null">
+                type = #{type},
+            </if>
+            <if test="tkmoney != null">
+                tkmoney = #{tkmoney},
+            </if>
+            <if test="tktime != null">
+                tktime = #{tktime},
+            </if>
+        </set>
+        where kid = #{kid}
+    </update>
+
+
+
+</mapper>
+
+
+

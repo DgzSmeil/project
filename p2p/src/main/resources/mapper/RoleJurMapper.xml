@@ -1,0 +1,16 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gs.dao.RoleJurDAO">
+    <insert id="saveBatch" parameterType="java.util.List">
+        insert into t_rolejur(rid,jid) values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.rid},#{item.jid})
+        </foreach>
+    </insert>
+
+    <delete id="removeById" parameterType="long">
+        delete from t_rolejur where rid = #{rid}
+    </delete>
+
+</mapper>

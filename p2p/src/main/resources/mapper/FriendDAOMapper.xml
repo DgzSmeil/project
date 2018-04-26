@@ -1,0 +1,60 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gs.dao.FriendDAO">
+
+
+    <insert id="save" parameterType="friend">
+        <![CDATA[
+        insert into t_friend(rname, furl, fpic, date) values(#{rname},#{furl},#{fpic},#{date})
+        ]]>
+    </insert>
+
+    <delete id="removeById" parameterType="long">
+        <![CDATA[
+          delete from t_friend where fid = #{fid}
+        ]]>
+    </delete>
+
+    <update id="update" parameterType="object">
+        update t_friend
+        <set>
+            <if test="rname != null and rname != ''">
+                rname = #{rname},
+            </if>
+            <if test="furl != null and furl != ''">
+                furl = #{furl},
+            </if>
+            <if test="fpic != null and fpic != ''">
+                fpic = #{fpic},
+            </if>
+        </set>
+        where fid = #{fid}
+    </update>
+
+    <sql id="common_where">
+
+        <if test="obj != null and obj.startTime != null and obj.startTime != '' and obj.endTime != null and obj.endTime != ''">
+            and date between #{obj.startTime} and #{obj.endTime}
+        </if>
+        <if test=" obj != null and obj.rname != null and obj.rname != ''">
+            and rname  like concat('%', #{obj.rname}, '%')
+        </if>
+    </sql>
+    <select id="listPagerCriteria" resultType="friend">
+        select * from t_friend where 1=1
+        <include refid="common_where"/> ORDER BY date asc
+        limit  #{pager.beginIndex}, #{pager.pageSize};
+    </select>
+
+    <select id="countCriteria" resultType="long">
+        select count(fid) from t_friend where 1=1
+        <include refid="common_where"/>
+    </select>
+
+    <select id="listFriendShow" resultType="friend">
+        select * from t_friend
+    </select>
+
+</mapper>

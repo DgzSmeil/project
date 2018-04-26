@@ -1,0 +1,97 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gs.dao.SkbDAO">
+
+    <sql id="skb_query_criteria">
+        <if test="query != null and query.uid != null">
+            and s.uid = #{query.uid}
+        </if>
+        <if test="query != null and query.baid != null">
+            and s.baid = #{query.baid}
+        </if>
+        <if test="query != null and query.djq != null">
+            and s.djq = #{query.djq}
+        </if>
+        <if test="query != null and query.startTime != null and query.startTime != ''">
+            and s.hkdate <![CDATA[>=]]> #{query.startTime}
+        </if>
+        <if test="query != null and query.endTime != null and query.endTime != ''">
+            and s.hkdate <![CDATA[<=]]> #{query.endTime}
+        </if>
+    </sql>
+    <select id="list" resultType="com.gs.bean.Skb">
+        select skid,baid,uid,ybx,ylx,ybj from t_skb s
+        where 1 = 1
+        <include refid="skb_query_criteria" />
+    </select>
+
+    <insert id="save" parameterType="skb">
+        <![CDATA[
+          insert into t_skb(uid,baid,ybx,ylx,ybj,tnum,hkdate,juid,tzmoney)
+          values(#{uid},#{baid},#{ybx},#{ylx},#{ybj},#{tnum},#{hkdate},#{juid},#{tzmoney} )
+        ]]>
+    </insert>
+
+    <insert id="saveList" parameterType="list">
+        <![CDATA[
+          insert into t_skb(uid,baid,ybx,ylx,ybj,tnum,hkdate,juid,tzmoney,djq) values
+        ]]>
+        <foreach collection="list" item="item" index="index" separator="," >
+            (#{item.uid},#{item.baid},#{item.ybx},#{item.ylx},#{item.ybj},#{item.tnum},#{item.hkdate},#{item.juid},#{item.tzmoney},#{item.djq})
+        </foreach>
+    </insert>
+
+    <select id="listPagerCriteria" resultType="com.gs.vo.SkbVO">
+        select s.skid,s.ybx,s.rbx,s.rlx,s.ybj,s.rbj,s.tnum,s.hkdate,s.baid,s.tzmoney,s.state,
+        bd.nprofit as nprofit,bd.cpname as cpname,sw.way as way
+        from t_skb s,t_borrowdetail bd,t_borrowapply ba,t_sway sw
+        where s.baid = bd.baid and s.baid = ba.baid and ba.sid = sw.sid
+        <include refid="skb_query_criteria" />
+        order by s.state,s.hkdate
+        limit #{pager.beginIndex}, #{pager.pageSize}
+    </select>
+    <select id="countCriteria" resultType="long">
+        select count(s.skid) from t_skb s,t_borrowdetail bd,t_borrowapply ba,t_sway sw
+        where s.baid = bd.baid and s.baid = ba.baid and ba.sid = sw.sid
+        <include refid="skb_query_criteria"/>
+    </select>
+
+    <select id="getById" parameterType="long" resultType="com.gs.bean.Skb">
+        select * from t_skb where skid = #{skid};
+    </select>
+    <update id="update">
+        <![CDATA[
+         update t_skb
+        ]]>
+        <set>
+            <if test="rbx != null and rbx!=''">
+                rbx = #{rbx},
+            </if>
+            <if test="rlx != null and rlx!=''">
+                rlx = #{rlx},
+            </if>
+            <if test="rbj != null and rbj!=''">
+                rbj = #{rbj},
+            </if>
+            <if test="rnum != null and rnum!=''">
+                rnum = #{rnum},
+            </if>
+            <if test="hkdate != null">
+                hkdate = #{hkdate},
+            </if>
+            <if test="state != null and state!=''">
+                state = #{state},
+            </if>
+        </set>
+        where skid = #{skid}
+    </update>
+
+    <select id="SumByDate" resultType="bigDecimal">
+        select SUM(ybx) from t_skb where uid = #{uid} and state !=3
+        <if test="sumaDate != null">
+            and hkdate <![CDATA[<=]]> #{sumaDate}
+        </if>
+    </select>
+</mapper>

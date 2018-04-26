@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gs.dao.SwayDAO">
+
+    <select id="countByPager" resultType="Integer">
+        <![CDATA[
+		select count(sid) from t_sway
+		]]>
+    </select>
+
+    <insert id="save" parameterType="com.gs.bean.Sway">
+        <![CDATA[
+          insert into t_sway(way,fw,state) values(#{way},#{fw},#{state})
+        ]]>
+    </insert>
+
+    <update id="update" parameterType="com.gs.bean.Sway">
+        <![CDATA[
+            update t_sway set way = #{way},fw = #{fw} and state = #{state} where sid = #{sid}
+        ]]>
+    </update>
+
+    <update id="updateState" parameterType="com.gs.bean.Sway">
+        <![CDATA[
+            update t_sway set state = #{state} where sid = #{sid}
+        ]]>
+    </update>
+
+    <delete id="removeById" parameterType="java.lang.Long">
+        <![CDATA[
+            delete from t_sway where sid = #{id}
+        ]]>
+    </delete>
+
+    <select id="getById" resultType="com.gs.bean.Sway" >
+        <![CDATA[
+        select * from t_sway where sid = #{sid}
+    ]]>
+    </select>
+
+    <select id="listPager" resultType="com.gs.vo.SwayVo">
+        <![CDATA[
+        select * from t_sway limit #{pager.beginIndex}, #{pager.pageSize}
+    ]]>
+    </select>
+    <select id="listAll" resultType="com.gs.bean.Sway">
+        <![CDATA[
+          select * from t_sway where 1=1
+        ]]>
+    </select>
+
+    <!--
+        select sid, way, fw, state from t_sway where sid = 2;
+        delete from t_sway where sid = 1;
+        insert into t_sway (way,fw,state) values(0,'微信',1);
+        insert into t_sway (way,fw,state) values(1,'银行卡',1);
+        insert into t_sway (way,fw,state) values(2,'支付宝',1);
+        insert into t_sway (way,fw,state) values(3,'QQ钱包',1);
+        insert into t_sway (way,fw,state) values(4,'余额宝',1);
+        update sway set way = 1,fw = '微信',state = 1 where sid = 2;
+    -->
+</mapper>

@@ -1,0 +1,64 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gs.dao.TzbDAO">
+    <sql id="tzb_query_common">
+        from t_tzb tzb,t_sway s,t_borrowapply ba,t_jklx jk,t_user u
+        where tzb.baid = ba.baid and ba.lxid = jk.lxid and ba.sid = s.sid and tzb.uid = u.uid
+    </sql>
+
+    <sql id="tzb_query_criteria">
+        <if test="query != null and query.uid != null">
+            and tzb.uid = #{query.uid}
+        </if>
+        <if test="query != null and query.baid != null">
+            and tzb.baid = #{query.baid}
+        </if>
+        <if test="query != null and query.state != null">
+            and ba.state = #{query.state}
+        </if>
+        <if test="query != null and query.startTime != null and query.startTime != ''">
+            and tzb.time <![CDATA[>=]]> #{query.startTime}
+        </if>
+        <if test="query != null and query.endTime != null and query.endTime != ''">
+            and tzb.time <![CDATA[<=]]> #{query.endTime}
+        </if>
+    </sql>
+
+    <select id="listPagerCriteria" resultType="com.gs.vo.TzbVO">
+       select tzb.tzid,tzb.money,tzb.cpname,tzb.nprofit,tzb.time,
+        ba.baid as baid,ba.sid as sid,ba.lxid as lxid,ba.state as state,
+        ba.term as term,s.way as way,jk.lxname as lxname,u.rname as rname
+        <include refid="tzb_query_common" />
+        <include refid="tzb_query_criteria" />
+        order by tzb.time desc
+        limit #{pager.beginIndex}, #{pager.pageSize}
+    </select>
+    <select id="countCriteria" resultType="long">
+        select count(tzb.tzid)
+        <include refid="tzb_query_common"/>
+        <include refid="tzb_query_criteria"/>
+    </select>
+
+    <insert id="save" parameterType="tzb">
+        <![CDATA[
+          insert into t_tzb(uid,juid,money,time,nprofit,cpname,baid) values(#{uid},#{juid},#{money},CURRENT_TIMESTAMP,#{nprofit},#{cpname},#{baid})
+        ]]>
+    </insert>
+    <select id="getTzb" resultType="com.gs.bean.Tzb">
+        select * from t_tzb where uid = #{uid} and baid = #{baid};
+    </select>
+    <select id="list" resultType="com.gs.bean.Tzb">
+        select tzb.money,tzb.baid from t_tzb tzb,t_borrowapply ba
+        where tzb.baid = ba.baid and tzb.uid = #{query.uid} and ba.state = #{query.state}
+    </select>
+
+    <update id="update" parameterType="tzb">
+        <![CDATA[
+         update t_tzb set money = #{money}
+           where tzid = #{tzid}
+        ]]>
+    </update>
+
+</mapper>

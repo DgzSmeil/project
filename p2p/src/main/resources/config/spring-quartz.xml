@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+    <context:component-scan base-package="com.gs.job" />
+
+    <!--每天凌晨23:59分判断是否优惠券是否过期-->
+    <bean id="userTicketJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="name" value="userTicketJobDetail" />
+        <property name="group" value="group1" />
+        <property name="jobClass" value="com.gs.job.UserTicketJob" />
+        <property name="durability" value="true" />
+        <property name="jobDataAsMap">
+            <map>
+                <entry key ="userTicketService" value-ref="userTicketServiceImpl"/>
+                <entry key="timeout" value="5" />
+            </map>
+        </property>
+    </bean>
+    <bean id="userTicketJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="name" value="userTicketJobTrigger" />
+        <property name="group" value="group1" />
+        <property name="jobDetail" ref="userTicketJobDetail" />
+        <property name="cronExpression" value="0 59 23 * * ?" />
+    </bean>
+
+    <!--每天凌晨0点还款，如果余额不足则逾期-->
+    <bean id="hkbJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="name" value="hkbJobDetail" />
+        <property name="group" value="group1" />
+        <property name="jobClass" value="com.gs.job.HkbJob" />
+        <property name="durability" value="true" />
+        <property name="jobDataAsMap">
+            <map>
+                <entry key ="hkbService" value-ref="hkbServiceImpl"/>
+                <entry key ="userMoneyService" value-ref="userMoneyServiceImpl"/>
+                <entry key ="borrowApplyService" value-ref="borrowApplyServiceImpl"/>
+                <entry key ="logMoneyService" value-ref="logMoneyServiceImpl"/>
+                <entry key ="skbService" value-ref="skbServiceImpl"/>
+                <entry key="timeout" value="5" />
+            </map>
+        </property>
+    </bean>
+    <bean id="hkbJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="name" value="hkbJobTrigger" />
+        <property name="group" value="group1" />
+        <property name="jobDetail" ref="hkbJobDetail" />
+        <property name="cronExpression" value="0 0 0 * * ?" />
+    </bean>
+
+    <!--每天凌晨0点2分判断是否是否流标-->
+    <bean id="borrowApplyJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="name" value="borrowApplyJobDetail" />
+        <property name="group" value="group1" />
+        <property name="jobClass" value="com.gs.job.BorrowApplyJob" />
+        <property name="durability" value="true" />
+        <property name="jobDataAsMap">
+            <map>
+                <entry key ="borrowApplyService" value-ref="borrowApplyServiceImpl"/>
+                <entry key="timeout" value="5" />
+            </map>
+        </property>
+    </bean>
+    <bean id="borrowApplyJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="name" value="borrowApplyJobTrigger" />
+        <property name="group" value="group1" />
+        <property name="jobDetail" ref="borrowApplyJobDetail" />
+        <property name="cronExpression" value="0 2 0 * * ?" />
+    </bean>
+
+    <!--测试-->
+    <bean id="testJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="name" value="testJobDetail" />
+        <property name="group" value="group1" />
+        <property name="jobClass" value="com.gs.job.TestJob" />
+        <property name="durability" value="true" />
+    </bean>
+    <bean id="testJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="name" value="testJobTrigger" />
+        <property name="group" value="group1" />
+        <property name="jobDetail" ref="testJobDetail" />
+        <property name="cronExpression" value="0/30 * * * * ?" />
+    </bean>
+
+
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="jobDetails">
+            <list>
+                <ref bean="userTicketJobDetail" />
+                <ref bean="hkbJobDetail" />
+                <ref bean="borrowApplyJobDetail" />
+                <!--<ref bean="testJobDetail" />-->
+            </list>
+        </property>
+        <property name="triggers">
+            <list>
+                <ref bean="userTicketJobTrigger" />
+                <ref bean="hkbJobTrigger" />
+                <ref bean="borrowApplyJobTrigger" />
+                <!--<ref bean="testJobTrigger" />-->
+            </list>
+        </property>
+    </bean>
+</beans>

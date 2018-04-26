@@ -1,0 +1,69 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gs.dao.HomeDAO">
+
+    <insert id="save" parameterType="com.gs.bean.Home">
+        <![CDATA[
+			insert into t_home(pic1, pic2, pic3, ewm, phone, l1, l2, l3, l4)
+			values(#{pic1},#{pic2},#{pic3},#{ewm},#{phone},#{l1},#{l2},#{l3},#{l4})
+		]]>
+    </insert>
+    <update id="update" parameterType="object">
+        update t_home
+        <set>
+            <if test="pic1 != null and pic1 != ''">
+                pic1 = #{pic1},
+            </if>
+            <if test="pic2 != null and pic2 != ''">
+                pic2 = #{pic2},
+            </if>
+            <if test="pic3 != null and pic3 != ''">
+                pic3 = #{pic3},
+            </if>
+            <if test="l1 != null and l1 != ''">
+                l1 = #{l1},
+            </if>
+            <if test="l2 != null and l2 != ''">
+                l2 = #{l2},
+            </if>
+            <if test="l3 != null and l3 != ''">
+                l3 = #{l3},
+            </if>
+            <if test="ewm != null and ewm != ''">
+                ewm = #{ewm},
+            </if>
+            <if test="phone != null and phone != ''">
+                phone = #{phone},
+            </if>
+        </set>
+        where hid = #{hid};
+    </update>
+    <select id="listAll" resultType="com.gs.bean.Home">
+        <![CDATA[
+		select * from t_home;
+		]]>
+    </select>
+    <select id="homeppt" resultType="com.gs.bean.Home">
+        select pic1,pic2,pic3,l1,l2,l3 from t_home order by hid desc limit 1;
+    </select>
+    <delete id="removeById" parameterType="com.gs.bean.Home">
+        <![CDATA[
+        delete from t_home where hid=#{hid};
+        ]]>
+    </delete>
+    <select id="getById" resultType="com.gs.bean.Home">
+        <![CDATA[
+		select * from t_home where hid=#{hid};
+		]]>
+    </select>
+    <select id="listPagerCriteria" resultType="com.gs.bean.Home">
+        select * from t_home order by hid desc
+        limit #{pager.beginIndex}, #{pager.pageSize};
+    </select>
+    <select id="countCriteria" resultType="long">
+        select count(hid)
+        from t_home;
+    </select>
+</mapper>

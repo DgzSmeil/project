@@ -1,0 +1,115 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gs.dao.BorrowDetailDAO">
+
+    <sql id="common_from">
+        from t_borrowdetail b,t_borrowapply bo,t_sway s,t_bz z,t_jklx j
+    </sql>
+    <sql id="common_where">
+        where b.baid=bo.baid and bo.sid=s.sid and bo.bzid=z.bzid and bo.lxid=j.lxid and bo.state<![CDATA[>]]>2
+        <if test="obj != null and obj.tt == 1 and obj.tt != ''">
+                and bo.term BETWEEN 1 and 3
+        </if>
+        <if test="obj != null and obj.tt == 2 and obj.tt != ''">
+                and bo.term BETWEEN 3 and 6
+        </if>
+        <if test="obj != null and obj.tt == 3 and obj.tt != ''">
+                and bo.term BETWEEN 6 and 9
+        </if>
+        <if test="obj != null and obj.tt == 4 and obj.tt != ''">
+                and bo.term &gt; 9
+        </if>
+        <if test="obj != null and obj.yy == 1 and obj.yy != ''">
+                and b.nprofit &lt;= 10
+        </if>
+        <if test="obj != null and obj.yy == 2 and obj.yy != ''">
+                and b.nprofit BETWEEN 10 and 15
+        </if>
+        <if test="obj != null and obj.yy == 3 and obj.yy != ''">
+                and b.nprofit BETWEEN 15 and 25
+        </if>
+        <if test="obj != null and obj.xx == 3 and obj.xx != ''">
+                and z.bzname ='多金宝'
+        </if>
+        <if test="obj != null and obj.xx == 4 and obj.xx != ''">
+                and z.bzname ='普金宝'
+        </if>
+        <if test="obj != null and obj.xx == 5 and obj.xx != ''">
+                and z.bzname ='恒金宝'
+        </if>
+        <if test="obj != null and obj.xx == 6 and obj.xx != ''">
+                and z.bzname ='新手标'
+        </if>
+        <if test="obj != null and obj.titles != ''">
+                and b.cpname like concat('%', #{obj.titles}, '%')
+        </if>
+    </sql>
+
+    <insert id="save" parameterType="borrowDetail">
+        <selectKey keyColumn="bdid" keyProperty="bdid" resultType="long" order="AFTER">
+            SELECT LAST_INSERT_ID();
+        </selectKey>
+        <![CDATA[
+          insert into t_borrowdetail(mpurpose,hksource,suggest,xmdescrip,guarantee,nprofit,cpname,baid,sqtime)
+          values(#{mpurpose},#{hksource},#{suggest},#{xmdescrip},#{guarantee},#{nprofit},#{cpname},#{baid},CURRENT_TIMESTAMP )
+        ]]>
+    </insert>
+
+    <update id="updatePic" parameterType="borrowDetail">
+        <![CDATA[
+         update t_borrowdetail
+        ]]>
+        <set>
+            <if test="fpic != null and fpic!=''">
+                fpic = #{fpic},
+            </if>
+            <if test="ypic != null and ypic!=''">
+                ypic = #{ypic},
+            </if>
+            <if test="tpic != null and tpic!=''">
+                tpic = #{tpic},
+            </if>
+            <if test="qpic != null and qpic!=''">
+                qpic = #{qpic},
+            </if>
+        </set>
+        where baid = #{baid}
+    </update>
+
+    <update id="update" parameterType="borrowDetail">
+        <![CDATA[
+         update t_borrowdetail set mpurpose = #{mpurpose}, hksource = #{hksource},suggest = #{suggest},xmdescrip = #{xmdescrip},
+         guarantee = #{guarantee},nprofit = #{nprofit}
+           where baid = #{baid}
+        ]]>
+    </update>
+
+    <update id="updateBybaid" parameterType="borrowDetail">
+        <![CDATA[
+         update t_borrowdetail set ytmoney = #{ytmoney}
+           where baid = #{baid}
+        ]]>
+    </update>
+
+    <select id="listPagerCriteria" resultType="com.gs.vo.investBorrowVo">
+        select bo.baid,z.bzname,b.cpname,s.way,bo.time,bo.deadline,bo.money,b.nprofit,bo.state,b.ytmoney,bo.term
+        <include refid="common_from"/>
+        <include refid="common_where"/>
+        order by bo.state
+        limit #{pager.beginIndex}, #{pager.pageSize};
+    </select>
+
+    <select id="countCriteria" resultType="long">
+        select count(b.baid)
+        <include refid="common_from"/>
+        <include refid="common_where"/>
+    </select>
+    <select id="getById" parameterType="long" resultType="com.gs.vo.BorrowDetailVO">
+        select bd.ytmoney,bd.baid,bd.nprofit,bd.cpname,ba.money as money,ba.state as state,ba.huid as huid,
+        ba.term as term,ba.uid as uid,ba.mbtime as mbtime,ba.bzid as bzid,bz.bzname as bzname,ba.rname as rname,s.way as way
+         from t_borrowdetail bd,t_borrowapply ba,t_sway s,t_bz bz
+         where bd.baid = ba.baid and ba.sid = s.sid and ba.bzid = bz.bzid and bd.baid = #{baid}
+    </select>
+</mapper>

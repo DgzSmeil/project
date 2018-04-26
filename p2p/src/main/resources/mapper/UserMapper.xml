@@ -1,0 +1,133 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gs.dao.UserDAO">
+
+    <!--登录验证-->
+    <select id="getByPhonePwd" resultType="com.gs.bean.User">
+        <![CDATA[
+        select uid, upwd, phone,rname,idno from t_user where phone = #{phone} and upwd = #{upwd}
+        ]]>
+    </select>
+
+    <!--验证密码-->
+    <select id="getByIdPassword" resultType="com.gs.bean.User">
+        <![CDATA[
+        select upwd, zpwd from t_user where uid = #{id}
+        ]]>
+    </select>
+
+    <!--获取用户信息-->
+    <select id="getUserById" resultType="com.gs.bean.User">
+        <![CDATA[
+          select uid, phone, upwd, uname, rname, email, idno, zpwd, isvip from t_user where uid = #{id}
+        ]]>
+    </select>
+
+    <select id="getById" resultType="com.gs.bean.User">
+        select * from t_user where uid =#{id}
+    </select>
+
+    <!--修改信息-->
+    <update id="update" parameterType="com.gs.bean.User">
+        <![CDATA[
+			update t_user
+		]]>
+        <set>
+            <if test="uname != null">
+                uname = #{uname},
+            </if>
+            <if test="upwd != null and upwd != ''">
+                upwd = #{upwd},
+            </if>
+            <if test="phone != null">
+                phone = #{phone},
+            </if>
+            <if test="idno != null">
+                idno = #{idno},
+            </if>
+            <if test="zpwd != null">
+                zpwd = #{zpwd},
+            </if>
+            <if test="email != null">
+                email = #{email},
+            </if>
+            <if test="rname != null">
+                rname = #{rname},
+            </if>
+            <if test="face != null">
+                face = #{face},
+            </if>
+            <if test="sex != null">
+                sex = #{sex},
+            </if>
+            <if test="isvip != null">
+                isvip = #{isvip},
+            </if>
+        </set>
+        where uid = #{uid}
+    </update>
+
+    <!--验证手机号是否存在-->
+    <select id="getByPhone" resultType="com.gs.bean.User">
+        <![CDATA[
+          select uid, uname, phone from t_user where phone = #{phone}
+        ]]>
+    </select>
+<!--还要专门写一个获取书-收集好的方法
+
+-->
+    <!--验证推荐码是否存在-->
+    <select id="getByUserCode" resultType="com.gs.bean.User">
+        <![CDATA[
+          select uid, rname, tzm from t_user where tzm = #{tzm}
+        ]]>
+    </select>
+
+    <!--注册-->
+    <insert id="save" parameterType="com.gs.bean.User">
+        <selectKey keyColumn="uid" keyProperty="uid" resultType="long" order="AFTER">
+            SELECT LAST_INSERT_ID();
+        </selectKey>
+        <![CDATA[
+          insert into t_user(uname, phone, upwd, tzm, tid) values(#{uname}, #{phone}, #{upwd}, #{tzm}, #{tid});
+        ]]>
+    </insert>
+
+    <!--条件查询-->
+    <select id="listPagerCriteria" resultType="com.gs.vo.UserVO">
+        select u.uid, u.face, u.uname, u.upwd, u.phone, u.tzm, u.idtype, u.idno, u.zpwd, u.email, u.rname, u.sex, u.isvip,
+        r.rid, r.uid, r.xl, r.ism, r.bschool, r.addr, r.work, r.age, r.age, r.ispass
+        <include refid="user_query_common" />
+        <include refid="user_query_criteria" />
+        limit #{pager.beginIndex}, #{pager.pageSize}
+    </select>
+
+    <select id="countCriteria" resultType="long">
+        select count(u.uid)
+        <include refid="user_query_common"/>
+        <include refid="user_query_criteria"/>
+    </select>
+
+    <sql id="user_query_common">
+        from t_user u, t_rzvip r
+        where u.uid = r.uid
+    </sql>
+
+    <sql id="user_query_criteria">
+        <if test="query != null and query.uid != null">
+            and u.uid = #{query.uid}
+        </if>
+        <if test="query != null and query.uname != null and query.uname != ''">
+            and u.uname like concat('%', #{query.uname}, '%')
+        </if>
+        <if test="query != null and query.phone != null and query.phone != ''">
+            and u.phone like concat('%', #{query.phone}, '%')
+        </if>
+        <if test="query != null and query.rname != null and query.rname != ''">
+            and u.rname like concat('%', #{query.rname}, '%')
+        </if>
+    </sql>
+
+</mapper>

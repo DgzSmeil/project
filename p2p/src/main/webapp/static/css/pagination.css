@@ -1,0 +1,33 @@
+#Pagination button {
+	border: 1px solid #AAE;
+	background-color: #fff;
+	color: black;
+}
+
+#Pagination button, #Pagination span {
+	display: inline-block;
+	padding: 0.1em 0.4em;
+	margin-right: 5px;
+	margin-bottom: 5px;
+}
+
+#Pagination .current {
+	background: #26B;
+	border: 1px solid #AAE;
+	background-color: #ffa13d;
+	color: #fff;
+	border-color: #ffa13d;
+}
+
+#Pagination .current.prev, #Pagination .current.next{
+	color:#999;
+	border-color:#999;
+	background:#fbfbfb;
+}
+#Pagination button:hover{
+	background: #26B;
+	border: 1px solid #AAE;
+	background-color: #ffa13d;
+	color: #fff;
+	border-color: #ffa13d;
+}

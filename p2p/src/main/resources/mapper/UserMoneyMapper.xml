@@ -1,0 +1,67 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gs.dao.UserMoneyDAO">
+
+
+
+    <select id="getByUserId" resultType="com.gs.bean.UserMoney">
+        <![CDATA[
+		select zmoney,kymoney,symoney,tzmoney,djmoney,dsmoney,jlmoney from t_usermoney
+		where uid = #{uid}
+		]]>
+    </select>
+
+    <update id="updateById">
+        update t_usermoney set kymoney = kymoney + #{money},zmoney = zmoney + #{money} where uid=#{id}
+    </update>
+
+
+    <update id="updateByIdMaoll">
+        update t_usermoney set kymoney = kymoney - #{money},zmoney = zmoney - #{money} where uid=#{id}
+    </update>
+
+    <update id="update" parameterType="com.gs.bean.UserMoney">
+        <![CDATA[
+         update t_usermoney
+        ]]>
+        <set>
+            <if test="zmoney != null and zmoney!=''">
+                zmoney = #{zmoney},
+            </if>
+            <if test="kymoney != null and kymoney!=''">
+                kymoney = #{kymoney},
+            </if>
+            <if test="symoney != null and symoney!=''">
+                symoney = #{symoney},
+            </if>
+            <if test="tzmoney != null and tzmoney!=''">
+                tzmoney = #{tzmoney},
+            </if>
+            <if test="djmoney != null and djmoney!=''">
+                djmoney = #{djmoney},
+            </if>
+            <if test="dsmoney != null and dsmoney!=''">
+                dsmoney = #{dsmoney},
+            </if>
+            <if test="jlmoney != null and jlmoney!=''">
+                jlmoney = #{jlmoney},
+            </if>
+        </set>
+        where uid = #{uid}
+    </update>
+
+    <insert id="save" parameterType="com.gs.bean.UserMoney">
+        insert into t_usermoney(uid) values(#{uid});
+    </insert>
+
+    <select id="listPager" resultType="com.gs.vo.UserMoneyVO">
+        select um.*,u.uname as uname from t_usermoney um, t_user u where um.uid = u.uid limit #{pager.beginIndex}, #{pager.pageSize}
+    </select>
+
+    <select id="count" resultType="long">
+        select count(um.umid)
+        from t_usermoney um, t_user u where um.uid = u.uid
+    </select>
+</mapper>

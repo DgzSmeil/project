@@ -1,0 +1,58 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gs.dao.RoleUserDAO">
+    <insert id="save" parameterType="roleUser">
+        <![CDATA[
+            insert into t_roleuser(rid,huid) values (#{rid},#{huid});
+        ]]>
+    </insert>
+
+    <select id="listAll" resultType="roleUser">
+        <![CDATA[
+        select * from t_roleuser
+        ]]>
+    </select>
+
+    <delete id="removeById" parameterType="long">
+        <![CDATA[
+        delete from t_roleuser where huid = #{huid}
+        ]]>
+    </delete>
+
+    <update id="update" parameterType="roleUser">
+        <![CDATA[
+            update t_roleuser
+        ]]>
+        <set>
+            <if test="rid != null">
+                rid = #{rid},
+            </if>
+            <if test="huid != null">
+                huid =#{huid},
+            </if>
+        </set>
+        where ruid = #{ruid}
+    </update>
+
+    <sql id="roleUserQuery_criteria">
+        <if test="query != null and query.rname != null and query.rname != ''">
+            and r.rname like concat('%', #{query.rname} ,'%')
+        </if>
+        <if test="query != null and query.huname != null and query.huname != ''">
+            and h.huname like concat('%', #{query.huname} ,'%')
+        </if>
+    </sql>
+
+    <select id="listPagerCriteria" resultType="com.gs.vo.RoleUserVO">
+        select r.rid,r.rname,r.content,h.huid as huid,h.phone as phone,h.huname as huname,h.email as email,ru.ruid as ruid from t_role r,t_roleuser ru,
+        t_huser h where ru.ruid = ruid and ru.rid = r.rid and ru.huid = h.huid
+        <include refid="roleUserQuery_criteria"/>
+        limit #{pager.beginIndex},#{pager.pageSize}
+    </select>
+
+    <select id="countCriteria" resultType="Long">
+        select count(ru.ruid) from t_roleuser ru,t_role r,t_huser h where ru.ruid = ruid and ru.rid = r.rid and ru.huid = h.huid
+        <include refid="roleUserQuery_criteria"/>
+    </select>
+</mapper>

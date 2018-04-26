@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gs.dao.BzDAO">
+
+    <select id="countByPager" resultType="Integer">
+        <![CDATA[
+		select count(bzid) from t_bz
+		]]>
+    </select>
+
+    <insert id="save" parameterType="com.gs.bean.Bz">
+        <![CDATA[
+          insert into t_bz(bzname,state) values(#{bzname},#{state})
+        ]]>
+    </insert>
+
+    <delete id="removeById" parameterType="java.lang.Long">
+        <![CDATA[
+            delete from t_bz where bzid = #{id}
+        ]]>
+    </delete>
+
+    <update id="update" parameterType="com.gs.bean.Bz">
+        <![CDATA[
+            update t_bz set bzname = #{bzname},state = #{state} where bzid = #{bzid}
+        ]]>
+    </update>
+
+    <update id="updateState" parameterType="com.gs.bean.Bz">
+        <![CDATA[
+            update t_bz set state = #{state} where bzid = #{bzid}
+        ]]>
+    </update>
+
+    <select id="listPager" resultType="com.gs.vo.BzVo">
+        <![CDATA[
+        select * from t_bz limit #{pager.beginIndex}, #{pager.pageSize}
+    ]]>
+    </select>
+
+    <select id="listAll" resultType="com.gs.bean.Bz">
+        <![CDATA[
+          select * from t_bz where 1=1
+        ]]>
+    </select>
+
+    <!--
+        select bzid, bzname, state from t_bz;
+        delete from t_bz where bzid = 2;
+        insert into t_bz (bzname, state) values ('多金宝',1);
+        update t_bz set bzname ='恒金宝',state = 0 where bzid = 1;
+    -->
+
+</mapper>

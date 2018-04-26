@@ -1,0 +1,62 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gs.dao.DynamicDAO">
+
+    <insert id="save" parameterType="com.gs.bean.Dynamic">
+        <![CDATA[
+			insert into t_dynamic(title, date, content, pic)
+			values(#{title},#{date},#{content},#{pic})
+		]]>
+    </insert>
+    <sql id="common_where">
+        <if test="query != null and query.title != null and query.title != ''">
+            and title like concat('%', #{query.title}, '%')
+        </if>
+
+        <if test="query != null and query.starttime != null and query.starttime != ''">
+            and date  <![CDATA[ <= ]]> #{query.starttime}
+        </if>
+    </sql>
+    <update id="update" parameterType="object">
+        update t_dynamic
+        <set>
+            <if test="title != null and title != ''">
+                title = #{title},
+            </if>
+            <if test="content != null and content != ''">
+                content = #{content},
+            </if>
+            <if test="date != null and date != ''">
+                date = #{date},
+            </if>
+            <if test="pic != null and pic != ''">
+                pic = #{pic},
+            </if>
+        </set>
+        where dyid = #{dyid};
+    </update>
+    <select id="listAll" resultType="object">
+        <![CDATA[
+		select * from t_dynamic order by date desc;
+		]]>
+    </select>
+    <select id="dynamicPage" parameterType="date" resultType="com.gs.bean.Dynamic">
+        <![CDATA[
+          select *,max(date) from t_dynamic where date<=#{date} group by dyid  limit 0,4;
+        ]]>
+    </select>
+    <select id="listPagerCriteria" resultType="com.gs.bean.Dynamic">
+        select * from t_dynamic where 1=1 <include refid="common_where"/> order by date desc
+        limit #{pager.beginIndex}, #{pager.pageSize};
+    </select>
+    <select id="countCriteria" resultType="long">
+        select count(dyid)
+        from t_dynamic where 1=1 <include refid="common_where"/>;
+    </select>
+    <select id="getById" parameterType="long" resultType="com.gs.bean.Dynamic">
+        select * from t_dynamic where dyid=#{dyid};
+    </select>
+
+</mapper>

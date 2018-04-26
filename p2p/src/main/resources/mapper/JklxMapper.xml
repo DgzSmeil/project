@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gs.dao.JklxDAO">
+
+    <select id="countByPager" resultType="Integer">
+        <![CDATA[
+		select count(lxid) from t_jklx
+		]]>
+    </select>
+
+    <insert id="save" parameterType="com.gs.bean.Jklx">
+        <![CDATA[
+          insert into t_jklx(lxname,state) values(#{lxname},#{state})
+        ]]>
+    </insert>
+
+    <update id="update" parameterType="com.gs.bean.Jklx">
+        <![CDATA[
+            update t_jklx set lxname = #{lxname},state = #{state} where lxid = #{lxid}
+        ]]>
+    </update>
+
+    <update id="updateState" parameterType="com.gs.bean.Jklx">
+        <![CDATA[
+            update t_jklx set state = #{state} where lxid = #{lxid}
+        ]]>
+    </update>
+
+    <delete id="removeById" parameterType="java.lang.Long">
+        <![CDATA[
+            delete from t_jklx where lxid = #{id}
+        ]]>
+    </delete>
+
+    <select id="listPager" resultType="com.gs.vo.JklxVo">
+        <![CDATA[
+        select * from t_jklx limit #{pager.beginIndex}, #{pager.pageSize}
+    ]]>
+    </select>
+
+    <select id="listAll" resultType="com.gs.bean.Jklx">
+        <![CDATA[
+          select * from t_jklx where 1=1;
+        ]]>
+    </select>
+
+    <!--
+        select lxid,lxname,state from t_jklx where lxid = 1；
+        delete from t_jklx where lxid = 1；
+        insert into t_jklx (lxname, state) values(借款类型,0)；
+        update t_jklx set lxname = 借款类型,state =1；
+    -->
+
+</mapper>

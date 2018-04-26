@@ -1,0 +1,58 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gs.dao.RoleDAO">
+    <insert id="save" parameterType="com.gs.vo.RoleJurVO">
+        <selectKey keyProperty="rid" order="AFTER" resultType="Long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        <![CDATA[
+            insert into t_role(rname,content) values (#{rname},#{content});
+        ]]>
+    </insert>
+
+    <select id="listAll" resultType="role">
+        <![CDATA[
+        select * from t_role
+        ]]>
+    </select>
+
+    <select id="listRoles" parameterType="string" resultType="String">
+        select r.rname from t_role r,t_huser h,t_roleuser ru where r.rid = ru.rid and h.huid = ru.huid and h.phone = #{phone}
+    </select>
+
+    <update id="update" parameterType="com.gs.vo.RoleJurVO">
+        <![CDATA[
+            update t_role
+        ]]>
+        <set>
+            <if test="rname != null">
+                rname = #{rname},
+            </if>
+            <if test="content != null">
+                content =#{content},
+            </if>
+        </set>
+        where rid = #{rid}
+    </update>
+
+    <sql id="role_criteria">
+        <if test="role != null and role.rname != null and role.rname != ''">
+            and r.rname like concat('%', #{role.rname} ,'%')
+        </if>
+        <if test="role != null and role.content != null and role.content != ''">
+            and r.content like concat('%', #{role.content} ,'%')
+        </if>
+    </sql>
+
+    <select id="listPagerCriteria" resultType="com.gs.bean.Role">
+        select r.rid,r.rname,r.content from t_role r where r.rid = rid
+        <include refid="role_criteria"/>
+        limit #{pager.beginIndex},#{pager.pageSize}
+    </select>
+
+    <select id="countCriteria" resultType="Long">
+        select count(r.rid) from t_role r where r.rid = rid
+        <include refid="role_criteria"/>
+    </select>
+</mapper>

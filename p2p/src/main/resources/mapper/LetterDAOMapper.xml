@@ -1,0 +1,80 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gs.dao.LetterDAO">
+
+
+
+    <insert id="save" parameterType="letter">
+            insert into t_letter (uid, phone, hid, title, content, date, state) values
+            (#{uid},#{phone},#{hid},#{title},#{content},#{date},#{state})
+
+
+</insert>
+
+    <delete id="removeById" parameterType="long">
+        <![CDATA[
+          delete from t_letter where lid = #{lid}
+        ]]>
+    </delete>
+
+    <update id="update" parameterType="object">
+        update t_letter
+        <set>
+            <if test="state == null">
+                <if test="title != null and title != ''">
+                    title = #{title},
+                </if>
+                <if test="content != null and content != ''">
+                    content = #{content},
+                </if>
+                    uid = #{uid},
+
+                    phone = #{phone},
+
+                <if test="date != null and date != ''">
+                    date = #{date},
+                </if>
+            </if>
+            state = #{state}
+        </set>
+        where lid = #{lid}
+    </update>
+
+    <sql id="common_where">
+        <if test="obj.title != null and obj.title != ''">
+          and title = #{obj.title}
+        </if>
+
+        <if test="obj.uid != null">
+            and uid = #{obj.uid} or phone = #{obj.phone}
+        </if>
+
+        <if test="obj.phone != null and obj.phone != '' and obj.uid == null">
+           and phone = #{obj.phone}
+        </if>
+
+        <if test="obj != null and obj.startTime != null and obj.startTime != '' and obj.endTime != null and obj.endTime != ''">
+            and date between #{obj.startTime} and #{obj.endTime}
+        </if>
+    </sql>
+
+    <select id="listPagerCriteria" resultType="letter">
+        select * from t_letter where 1=1
+        <include refid="common_where"/> ORDER BY state asc,date desc
+        limit  #{pager.beginIndex}, #{pager.pageSize};
+    </select>
+
+    <select id="countCriteria" resultType="long">
+        select count(lid) from t_letter where 1=1
+        <include refid="common_where"/> ORDER BY state asc,date desc
+    </select>
+
+    <select id="getById" parameterType="long" resultType="letter">
+            <![CDATA[
+          select * from t_letter where lid = #{id}
+        ]]>
+    </select>
+
+</mapper>

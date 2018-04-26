@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gs.dao.DxModelDAO">
+
+    <select id="countByPager" resultType="Integer">
+        <![CDATA[
+		select count(dxid) from t_dxmodel
+		]]>
+    </select>
+
+    <delete id="removeById" parameterType="java.lang.Long">
+        delete from t_dxmodel where dxid = #{id}
+    </delete>
+
+    <insert id="save" parameterType="com.gs.bean.DxModel">
+        insert into t_dxmodel (content) values (#{content})
+    </insert>
+
+    <update id="update" parameterType="com.gs.bean.DxModel">
+        update t_dxmodel set content = #{content} where dxid = #{dxid}
+    </update>
+
+    <select id="listPager" resultType="com.gs.bean.DxModel">
+        <![CDATA[
+         select * from t_dxmodel limit #{pager.beginIndex}, #{pager.pageSize}
+      ]]>
+    </select>
+
+    <!--
+        select dxid,content from t_dxmodel where dxid =1;
+        delete from t_dxmodel where dxid =1;
+        insert into t_dxmodel (content) values ('验证码错误');
+        update t_dxmodel set content = '请重新输入' where dxid =1;
+   -->
+
+    <select id="isRegPhone" parameterType="java.lang.String" resultType="java.lang.Integer">
+        <![CDATA[
+            select id from t_user WHERE phone=#{phone};
+        ]]>
+    </select>
+
+</mapper>

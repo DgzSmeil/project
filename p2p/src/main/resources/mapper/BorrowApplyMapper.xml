@@ -1,0 +1,128 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gs.dao.BorrowApplyDAO">
+
+    <sql id="jkb_query_common">
+        from t_borrowapply ba,t_borrowdetail bd,t_bz bz,t_jklx j,t_sway s
+        where ba.baid = bd.baid
+        and ba.bzid = bz.bzid
+        and ba.lxid = j.lxid
+        and ba.sid = s.sid
+    </sql>
+
+    <sql id="jkb_query_criteria">
+        <if test="query != null and query.state != null">
+            and ba.state = #{query.state}
+        </if>
+        <if test="query != null and query.uid != null">
+            and ba.uid = #{query.uid}
+        </if>
+        <if test="query != null and query.money != null and query.money != ''">
+            and ba.money <![CDATA[<=]]> #{query.money}
+        </if>
+        <if test="query != null and query.deadline != null and query.deadline != ''">
+            and ba.deadline <![CDATA[<=]]> #{query.deadline}
+        </if>
+        <if test="query != null and query.bzid != null">
+            and bz.bzid = #{query.bzid}
+        </if>
+        <if test="query != null and query.term != null">
+            and ba.term = #{query.term}
+        </if>
+        <if test="query != null and query.nprofit != null">
+            and bd.nprofit = #{query.nprofit}
+        </if>
+        <if test="query != null and query.startTime != null and query.startTime != ''">
+            and bd.sqtime <![CDATA[>=]]> #{query.startTime}
+        </if>
+        <if test="query != null and query.endTime != null and query.endTime != ''">
+            and bd.sqtime <![CDATA[<=]]> #{query.endTime}
+        </if>
+        <if test="query != null and query.cpname != null and query.cpname != ''">
+            and bd.cpname like concat('%', #{query.cpname}, '%')
+        </if>
+    </sql>
+    <insert id="save" parameterType="borrowApply">
+        <selectKey keyColumn="baid" keyProperty="baid" resultType="long" order="AFTER">
+            SELECT LAST_INSERT_ID();
+        </selectKey>
+        <![CDATA[
+          insert into t_borrowapply(rname,money,uid,bzid,lxid,term,deadline,sid,state) values(#{rname},#{money},#{uid},#{bzid},#{lxid},#{term},#{deadline},#{sid},1)
+        ]]>
+    </insert>
+
+    <select id="listAll" resultType="com.gs.bean.BorrowApply">
+        <![CDATA[
+        select * from t_borrowapply where state = 0;
+        ]]>
+    </select>
+
+    <select id="listPagerCriteria" resultType="com.gs.vo.JkbVO">
+        select ba.baid,ba.rname,ba.money,ba.state,ba.term,ba.excuse,ba.time,ba.deadline,ba.mbtime,
+        bd.bdid as bdid,bd.nprofit as nprofit,bd.cpname as cpname,bd.fpic as fpic,bd.ypic as ypic,bd.sqtime as sqtime,
+        bd.qpic as qpic,bd.tpic as tpic,bd.mpurpose as mpurpose,bd.hksource as hksource,bd.suggest as suggest,bd.ytmoney as ytmoney,
+        bd.xmdescrip as xmdescrip,bd.guarantee as guarantee,
+        bz.bzid as bzid,bz.bzname as bzname,j.lxid as lxid,j.lxname as lxname,s.sid as sid,s.way as way
+        <include refid="jkb_query_common" />
+        <include refid="jkb_query_criteria" />
+        limit #{pager.beginIndex}, #{pager.pageSize}
+    </select>
+    <select id="countCriteria" resultType="long">
+        select count(ba.baid)
+        <include refid="jkb_query_common"/>
+        <include refid="jkb_query_criteria"/>
+    </select>
+    <select id="getById" parameterType="long" resultType="com.gs.vo.JkbVO">
+        select ba.baid,ba.rname,ba.money,ba.state,ba.term,ba.excuse,ba.deadline,ba.uid,ba.time,ba.deadline,
+        bd.bdid as bdid,bd.nprofit as nprofit,bd.cpname as cpname,bd.fpic as fpic,bd.ypic as ypic,bd.sqtime as sqtime,
+        bd.qpic as qpic,bd.tpic as tpic,bd.mpurpose as mpurpose,bd.hksource as hksource,bd.suggest as suggest,bd.ytmoney as ytmoney,
+        bd.xmdescrip as xmdescrip,bd.guarantee as guarantee,
+        bz.bzid as bzid,bz.bzname as bzname,j.lxid as lxid,j.lxname as lxname,s.sid as sid,s.way as way
+        <include refid="jkb_query_common" />
+        and ba.baid = #{baid}
+    </select>
+    <update id="update" parameterType="borrowApply">
+        <![CDATA[
+        update t_borrowapply set money = #{money},bzid = #{bzid},state = #{state},lxid = #{lxid},term = #{term},
+            deadline = #{deadline},sid = #{sid}
+        where baid = #{baid}
+        ]]>
+    </update>
+
+    <update id="updateState" parameterType="com.gs.bean.BorrowApply">
+        <![CDATA[
+         update t_borrowapply ba
+         ]]>
+        <set>
+            <if test="huid != null and huid!=''">
+                ba.huid = #{huid},
+            </if>
+            <if test="mbtime != null and mbtime!=''">
+                ba.mbtime = #{mbtime},
+            </if>
+            <if test="excuse != null and excuse!=''">
+                ba.excuse = #{excuse},
+            </if>
+            <if test="state != null and state!=''">
+                ba.state = #{state},
+            </if>
+        </set>
+        where baid = #{baid}
+    </update>
+    <update id="updateState2" parameterType="com.gs.bean.BorrowApply">
+        <![CDATA[
+        update t_borrowapply set huid = #{huid},state = #{state},excuse = #{excuse},`time` = CURRENT_TIMESTAMP where baid = #{baid}
+        ]]>
+    </update>
+
+    <select id="listByBzid" resultType="com.gs.vo.investBorrowVo">
+        select ba.baid,ba.money,ba.term,ba.state,
+            bd.nprofit as nprofit,bd.ytmoney as ytmoney,bd.cpname as cpname
+        from t_borrowapply ba, t_borrowdetail bd where ba.baid = bd.baid and ba.state<![CDATA[>]]>2 and ba.state !=6 and ba.bzid = #{bzid} order by ba.state;
+    </select>
+    <select id="listByUid" resultType="borrowApply">
+        select baid from t_borrowapply where uid = #{uid} and state !=5;
+    </select>
+</mapper>

@@ -1,0 +1,60 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gs.dao.LogTxDAO">
+
+    <sql id="common_where">
+
+        <if test="obj != null and obj.startTime != null and obj.startTime != '' and obj.endTime != null and obj.endTime != ''">
+            and l.date between #{obj.startTime} and #{obj.endTime}
+        </if>
+        <if test="obj != null and obj.rname != null and obj.rname != '' ">
+            and u.rname like concat('%', #{obj.rname}, '%')
+        </if>
+        <if test="obj != null and obj.phone != null and obj.phone != '' ">
+            and u.phone like concat('%' ,#{obj.phone}, '%')
+        </if>
+        <if test="obj != null and obj.state != null and obj.state != '' ">
+            and l.state = #{obj.state}
+        </if>
+    </sql>
+
+    <sql id="common_form">
+       from t_logtx l,t_user u  where l.uid = u.uid
+        <if test="obj != null and obj.uid !=null ">
+            and l.uid = #{obj.uid}
+        </if>
+    </sql>
+
+    <insert id="save" parameterType="com.gs.bean.LogTx" >
+        <![CDATA[
+          insert into t_logtx(uid, money, date, state, bankcard, banktype,proce) values
+          (#{uid},#{money},#{date},#{state},#{bankcard},#{banktype},#{proce})
+        ]]>
+    </insert>
+
+    <select id="getById" resultType="long">
+        <![CDATA[
+		select * from t_logtx where id=#{id}
+		]]>
+    </select>
+
+    <select id="listPagerCriteria"   resultType="com.gs.vo.LogTxVo">
+		select l.id,u.rname,u.phone,l.money,l.bankcard as cardno ,l.proce,l.date,l.state
+		<include refid="common_form"/>
+        <include refid="common_where"/> ORDER BY l.state asc
+        limit #{pager.beginIndex}, #{pager.pageSize};
+    </select>
+
+    <select id="countCriteria" parameterType="object" resultType="long">
+        select count(id)
+        <include refid="common_form"/>
+        <include refid="common_where"/>
+    </select>
+
+    <update id="updateById">
+        update t_logtx set state = #{state} where id=#{id}
+    </update>
+
+</mapper>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="buildingPackage" namespace="/build" extends="json-default">
+    	<action name="*" class="buildingAction" method="{1}">
+    		<result name="list" type="json"></result>
+    		<result name="strap" >/WEB-INF/views/building/building_list.jsp</result>
+    		<result name="add" >/WEB-INF/views/building/building_add.jsp</result>
+    		<result name="addsave" >/WEB-INF/views/building/building_list.jsp</result>
+    		<result name="update" >/WEB-INF/views/building/building_update.jsp</result>
+    		<result name="updatesave" >/WEB-INF/views/building/building_list.jsp</result>
+    		<result name="status" >/WEB-INF/views/building/building_list.jsp</result>
+    		<result name="find" >/WEB-INF/views/building/building_list.jsp</result>
+    	</action>
+    </package>
+
+</struts>

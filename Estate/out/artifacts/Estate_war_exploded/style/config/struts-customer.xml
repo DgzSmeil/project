@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="customerPackage" namespace="/customer" extends="basePackage">
+    	<action name="*" class="customerAction" method="{1}">
+	   		<result name="pager" type="json"></result>
+	   		<result name="add" type="json"></result>
+	   		<result name="page">/WEB-INF/views/customer/customer_add.jsp</result>
+	   		<result name="success">/WEB-INF/views/customer/customer_list.jsp</result>
+	   		<result name="list" type="redirectAction">list.action</result>
+	   		<result name="update" type="json"></result>
+	   		<result name="inactive" type="json"></result>
+	   		<result name="active" type="json"></result>
+    	</action>
+    </package>
+	<!-- 
+			
+	   		<result name="add" type="json"></result>
+	   		<result name="success">/WEB-INF/views/customer/customer_list.jsp</result>
+	   		
+	 -->
+</struts>

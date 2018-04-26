@@ -1,0 +1,38 @@
+<?xml version="1.0"?>    
+<!DOCTYPE hibernate-mapping PUBLIC     
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"    
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">       
+<hibernate-mapping>      
+    <class name="com.gs.pojo.Buildings" table="t_buildings">    
+        <id name="id">     
+            <generator class="uuid"/>    
+        </id>
+        <property name="agency_id" column="agency_id" type="string" length="36"/> 
+        <property name="name" column="name" type="string" length="50"/>  
+        <property name="area" column="area" type="string" length="50"/>    
+        <property name="address" column="address" type="string" length="100"/>    
+        <property name="floor_area" column="floor_area" type="double"/>    
+        <property name="building_area" column="building_area" type="double"/>    
+        <property name="house_type" column="house_type" type="string" length="20"/>    
+        <property name="building_type" column="building_type" type="string" length="20"/>    
+        <property name="longitude" column="longitude" type="double" not-null="true"/>    
+        <property name="latitude" column="latitude" type="double" not-null="true"/>    
+        <property name="avg_price" column="avg_price" type="double" not-null="true"/>    
+        <property name="company" column="company" type="string" length="100"/>    
+        <property name="open_date" column="open_date" type="date"/>    
+        <property name="total_rooms" column="total_rooms" type="int"/>    
+        <property name="reception_address" column="reception_address" type="string" length="100" not-null="true"/>    
+        <property name="tel" column="tel" type="string" length="11" not-null="true"/>    
+        <property name="green_ratio" column="green_ratio" type="double"/>    
+        <property name="plot_ratio" column="plot_ratio" type="double"/>    
+        <property name="property_company" column="property_company" type="string" length="100"/>    
+        <property name="property_fee" column="property_fee" type="double"/>    
+        <property name="car_station" column="car_station" type="int"/>    
+        <property name="traffic" column="traffic" type="string" length="500"/>    
+        <property name="equipments" column="equipments" type="string" length="500"/>    
+        <property name="logo" column="logo" type="string" length="500"/>    
+        <property name="intro" column="intro" type="string" length="500"/>    
+        <property name="created_time" column="created_time" type="date"/>    
+        <property name="status" column="status" type="string" length="2"/>
+      </class>    
+</hibernate-mapping>

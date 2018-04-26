@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="roomPackage" namespace="/room" extends="json-default">
+    	<action name="*" class="roomAction" method="{1}">
+    		<result name="list" type="json"></result>
+    		<result name="strap" >/WEB-INF/views/room/room_list.jsp</result>
+    		<result name="add" >/WEB-INF/views/room/room_add.jsp</result>
+    		<result name="addsave" >/WEB-INF/views/room/room_list.jsp</result>
+    		<result name="update" >/WEB-INF/views/room/room_update.jsp</result>
+    		<result name="updatesave" >/WEB-INF/views/room/room_list.jsp</result>
+    		<result name="status" >/WEB-INF/views/room/room_list.jsp</result>
+    		<result name="find" >/WEB-INF/views/house/house_home.jsp</result>
+    		<result name="selfadd" >/WEB-INF/views/room/room_self_add.jsp</result>
+    		<result name="selfaddSave" >/WEB-INF/views/room/room_list.jsp</result>
+    		<result name="look">/WEB-INF/views/room/roomList.jsp</result>
+    		<result name="looklist" type="json">/WEB-INF/views/room/roomList.jsp</result>
+    		<result name="look1" type="redirectAction">/look?buildings_id=${building.buildings_id}</result>
+    	</action>
+    </package>
+
+</struts>

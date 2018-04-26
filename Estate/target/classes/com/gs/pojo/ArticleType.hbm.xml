@@ -1,0 +1,15 @@
+<?xml version="1.0"?>    
+<!DOCTYPE hibernate-mapping PUBLIC     
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"    
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">       
+<hibernate-mapping>      
+    <class name="com.gs.pojo.ArticleType" table="t_article_type">    
+        <id name="id">     
+            <generator class="uuid"/>    
+        </id>    
+        <property name="name" column="name" type="string" length="50" unique="true" not-null="true" />  
+        <property name="des" column="des" type="string" length="500"/>    
+        <property name="status" column="status" type="string" length="2"/>    
+    </class>    
+        
+</hibernate-mapping>

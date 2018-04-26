@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="activityPackage" namespace="/activity" extends="basePackage">
+    	<action name="*" class="activityAction" method="{1}">
+    		<result name="addInfo">/WEB-INF/views/activity/activityAdd.jsp</result>
+    		<result name="add" type="redirectAction">/activity/list1?agency_id=${activity.agency_id}</result>
+    		<result name="list" type="json">/WEB-INF/views/activity/activity_list.jsp</result>
+    		<result name="list1">/WEB-INF/views/activity/activity_list.jsp</result>
+    		<result name="all">/WEB-INF/views/activity/activity_all.jsp</result>
+    		<result name="look">/WEB-INF/views/activity/activity_look.jsp</result>
+    		<result name="lookactivity">/WEB-INF/views/activity/activityLook.jsp</result>
+    		<result name="update">/WEB-INF/views/activity/activity_update.jsp</result>
+    		<result name="updateSave" type="redirectAction">/activity/look?activity.id=${activity.id}</result>
+    		<result name="status" type="redirectAction">/activity/list1?agency_id=${activity.agency_id}</result>
+    		<!-- manager satart -->
+    		<result name="mgnactivitypage">/WEB-INF/views/manager/manager_activity.jsp</result>
+    		<result name="mgnAgcActvtLook">/WEB-INF/views/manager/mng_agcactvtlook.jsp</result>
+    		<result name="mgnActvtAddPage">/WEB-INF/views/manager/mng_mgnActvtAdd.jsp</result>
+    		<result name="mgnActvtEditpage">/WEB-INF/views/manager/mng_mgnActvtEditPage.jsp</result>
+    		<result name="returnjson" type="json"></result>
+    		<result name="all2" type="json"></result>
+    		<!-- manager end -->
+    	</action>
+    </package>
+
+</struts>

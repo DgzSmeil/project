@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="historyPackage" namespace="/history" extends="basePackage">
+    	<action name="*" class="historyAction" method="{1}">
+    		<result name="add" type="json"></result>
+    		<result name="myall">/WEB-INF/views/history/history_myall.jsp</result>
+    		<result name="myall2" type="json">/WEB-INF/views/history/history_myall.jsp</result>
+    	</action>
+    </package>
+
+</struts>

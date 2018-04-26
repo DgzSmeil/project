@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="customerPackage" namespace="/customer" extends="basePackage">
+    	<action name="*" class="customerAction" method="{1}">
+    		<result name="add" type="redirectAction">/list?employee_id=${customer.employee_id}</result>
+    		<result name="updatepage">/WEB-INF/views/customer/customerUpdate.jsp</result>
+    		<result name="update" type="redirectAction">/list?employee_id=${customer.employee_id}</result>
+    		<result name="page">/WEB-INF/views/customer/customer_add.jsp</result>
+    		<result name="list">/WEB-INF/views/customer/customerlist.jsp</result>
+    		<result name="pager" type="json">/WEB-INF/views/customer/customerlist.jsp</result>
+    		<result name="status" type="json">/WEB-INF/views/customer/customerlist.jsp</result>
+    		<result name="look">/WEB-INF/views/customer/customerLook.jsp</result>
+    		
+    		<result name="agencyList">/WEB-INF/views/agency/customer/agency_customer.jsp</result>
+    		<result name="agencycustomer" type="json">/WEB-INF/views/agency/customer/agency_customer.jsp</result>
+    		<result name="agencystatus">/WEB-INF/views/agency/customer/agency_customer.jsp</result>
+    		<result name="agencyAddCustomer" >/WEB-INF/views/agency/customer/agency_customer_add.jsp</result>
+    		<result name="agencyAddCustomerSave" >/WEB-INF/views/agency/customer/agency_customer.jsp</result>
+    		<result name="agencyCustomerUpdate" >/WEB-INF/views/agency/customer/agency_customer_update.jsp</result>
+    		<result name="agencyCustomerUpdateSave" >/WEB-INF/views/agency/customer/agency_customer.jsp</result>
+    		
+    	</action>
+    </package>
+
+</struts>

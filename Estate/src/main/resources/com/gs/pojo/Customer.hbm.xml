@@ -1,0 +1,26 @@
+<?xml version="1.0"?>    
+<!DOCTYPE hibernate-mapping PUBLIC     
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"    
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">       
+<hibernate-mapping>      
+    <class name="com.gs.pojo.Customer" table="t_customer" dynamic-insert="true" dynamic-update="true">    
+       <id name="id">     
+           <generator class="uuid"/>    
+       </id>    
+       <property name="name" type="string" length="20"/>  
+       <property name="gender" type="string" length="2"/> 
+       <property name="birthday" type="date"/>  
+       <property name="identity_id" type="string" length="18"/>  
+       <property name="email" type="string" length="50" not-null="true"/>  
+       <property name="phone" type="string" length="11" not-null="true" unique="true"/>  
+       <property name="address" type="string" length="100" not-null="true"/> 
+       <property name="customer_type" type="string" length="20"/> 
+       <property name="together" type="string" length="100"/>  
+       <property name="contract" type="string" length="500"/>  
+       <property name="archives" type="string" length="500"/>
+       <property name="employee_id" type="string" length="36"/>  
+       <property name="created_time" type="date"/>
+       <property name="status" type="string" length="2"/>   
+       <many-to-one name="employee" column="employee_id" class="com.gs.pojo.Employee" lazy="false" insert="false" update="false"></many-to-one>
+    </class> 
+</hibernate-mapping>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>    
+<!DOCTYPE hibernate-mapping PUBLIC     
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"    
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">       
+<hibernate-mapping>      
+    <class name="com.gs.pojo.Appointment" table="t_appointment">    
+        <id name="id">     
+            <generator class="uuid"></generator>    
+        </id>    
+        <property name="emp_id" type="string" length="36" ></property>  
+        <property name="user_id" type="string" length="36" ></property>
+        <property name="app_arrive_time" type="date"></property>
+        <property name="arrive_time" type="date"></property>
+        <property name="house_id" type="string" length="36" ></property>
+        <property name="app_status" type="string" length="20"></property>
+        <property name="created_time" type="date" ></property>
+        <property name="status" type="string" length="2"></property>
+        <many-to-one name="house" column="house_id" class="com.gs.pojo.House" lazy="false" insert="false" update="false"></many-to-one>
+    	<many-to-one name="employee" column="emp_id" class="com.gs.pojo.Employee" lazy="false" insert="false" update="false"></many-to-one>
+    	<many-to-one name="users" column="user_id" class="com.gs.pojo.User" lazy="false" insert="false" update="false"></many-to-one>
+    </class>    
+        
+</hibernate-mapping>

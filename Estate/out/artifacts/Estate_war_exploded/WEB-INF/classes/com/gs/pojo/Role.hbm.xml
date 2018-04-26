@@ -1,0 +1,16 @@
+<?xml version="1.0"?>    
+<!DOCTYPE hibernate-mapping PUBLIC     
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"    
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">       
+<hibernate-mapping>      
+    <class name="com.gs.pojo.Role" table="t_role">    
+        <id name="id">     
+            <generator class="uuid"></generator>    
+        </id>    
+        <property name="iname" type="string" length="50" not-null="true"></property>  
+        <property name="ides" type="string" length="50" not-null="true"></property>
+        <property name="icreated_time" type="date"></property>
+        <property name="istatus" type="string" length="2"></property>
+    </class>    
+        
+</hibernate-mapping>

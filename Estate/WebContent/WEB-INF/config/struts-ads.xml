@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="adsPackage" namespace="/ads" extends="basePackage">
+    	<action name="*" class="adsAction" method="{1}">
+    		<result name="adsPage">/WEB-INF/views/ads/manager_ads.jsp</result>
+    		<result name="adsAddPage">/WEB-INF/views/ads/mng_adsAdd.jsp</result>
+    		<result name="adsEditPage">/WEB-INF/views/ads/mng_adsEdit.jsp</result>
+    		<result name="adsLook">/WEB-INF/views/ads/mng_adsLook.jsp</result>
+    		<result name="showAds">/WEB-INF/views/ads/showAds.jsp</result>
+    		<result name="returnjson" type="json"></result>
+    	</action>
+    </package>
+
+</struts>

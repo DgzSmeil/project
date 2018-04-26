@@ -1,0 +1,20 @@
+<?xml version="1.0"?>    
+<!DOCTYPE hibernate-mapping PUBLIC     
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"    
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">       
+<hibernate-mapping>      
+    <class name="com.gs.pojo.House" table="t_house">    
+        <id name="id">     
+            <generator class="uuid"/>    
+        </id>    
+        <property name="name" column="name" type="string" length="50"/>  
+        <property name="logo" column="logo" type="string" length="500"/>    
+        <property name="intro" column="intro" type="string" length="500"/>    
+        <property name="area" column="area" type="double" not-null="true"/>    
+        <property name="unit_price" column="unit_price" type="double" not-null="true"/>    
+        <property name="buildings_id" column="buildings_id" type="string" length="36"/>
+        <property name="created_time" column="created_time" type="date"/>
+        <property name="status" column="status" type="string" length="2"/>
+    </class>    
+        
+</hibernate-mapping>

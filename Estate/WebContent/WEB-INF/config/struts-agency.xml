@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="agencyPackage" namespace="/agency" extends="basePackage">
+    	<interceptors> 
+			 <!-- 定义了一个名为authority的拦截器 --> 
+			  <interceptor name="authority" class="com.gs.filter.FilterInterceptor"/> <!--上面自定义的拦截器类-->
+			  <interceptor-stack name="myDefault">
+			   <interceptor-ref name="authority"> <!-- 引用拦截器  -->
+			    <param name="includeMethods">homepage</param> <!-- 设置需要拦截的方法，多个以逗号隔开 -->
+			   </interceptor-ref>
+			   <interceptor-ref name="defaultStack"></interceptor-ref>
+			  </interceptor-stack>
+		 </interceptors>
+    	<action name="*" class="agencyAction" method="{1}">
+    		<interceptor-ref name="myDefault"></interceptor-ref>
+    		<result name="homepage">/WEB-INF/views/agency/agency_home.jsp</result>
+    		<result name="shouye">/WEB-INF/views/agency/home.jsp</result>
+    		<result name="login">/WEB-INF/views/agency/agency_login.jsp</result>
+    		<result name="registered">/WEB-INF/views/agency/agency_registered.jsp</result>
+    		<result name="personal">/WEB-INF/views/agency/agency_personal.jsp</result>
+    		<result name="mima">/WEB-INF/views/agency/agency_mima.jsp</result>
+    		<result name="add" type="redirectAction">/agency/login</result>
+    		<result name="all">/WEB-INF/views/agency/agency_all.jsp</result>
+    		
+    		<!-- manager start -->
+    		<result name="mgnagency">/WEB-INF/views/manager/manager_agency.jsp</result>
+    		<result name="mgnagclook">/WEB-INF/views/manager/mng_agclook.jsp</result>
+    		<result name="mgnagcedit">/WEB-INF/views/manager/mng_agcedit.jsp</result>
+    		<result name="returnjson" type="json"></result>
+    		<result name="yzm" type="json">/WEB-INF/views/agency/agency_login.jsp</result>
+    		<!-- manager end -->
+    	</action>
+    	
+    	 
+		    </package>
+
+</struts>

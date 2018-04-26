@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="commentPackage" namespace="/comment" extends="basePackage">
+    	<action name="*" class="commentAction" method="{1}">
+    		<result name="add" type="json"></result>
+    		<result name="all">/WEB-INF/views/comment/comment_all.jsp</result>
+    		<result name="all2" type="json">/WEB-INF/views/comment/comment_all.jsp</result>
+    		<result name="look">/WEB-INF/views/comment/comment_look.jsp</result>
+    		<result name="myall">/WEB-INF/views/comment/comment_myall.jsp</result>
+    		<result name="myall2" type="json">/WEB-INF/views/comment/comment_myall.jsp</result>
+    	</action>
+    </package>
+
+</struts>

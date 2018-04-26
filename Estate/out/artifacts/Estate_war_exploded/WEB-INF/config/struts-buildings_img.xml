@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="buildings_imgPackage" namespace="/buildings_img" extends="basePackage">
+    	<action name="*" class="buildings_imgAction" method="{1}">
+    		<result name="addInfo">/WEB-INF/views/buildings_img/buildings_imgAdd.jsp</result>
+    		<result name="list1">/WEB-INF/views/buildings_img/list.jsp</result>
+    		<result name="list" type="json">/WEB-INF/views/buildings_img/list.jsp</result>
+    		<result name="look">/WEB-INF/views/buildings_img/buildingsLook.jsp</result>
+    		<result name="update">/WEB-INF/views/buildings_img/buildingsUpdate.jsp</result>
+    		<result name="updateSave" type="redirectAction">/buildings_img/look?builds.id=${builds.id}</result>
+    		<result name="status" type="redirectAction">/buildings_img/list?agency.id=${builds.agency_id}</result>
+    		<!-- manager start -->
+    		<result name="mgnBdsImgPage" >/WEB-INF/views/manager/manager_buildingsImg.jsp</result>
+    		<result name="returnjson" type="json"></result>
+    		<!-- manager end -->
+    	</action>
+    </package>
+
+</struts>

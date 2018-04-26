@@ -1,0 +1,21 @@
+<?xml version="1.0"?>    
+<!DOCTYPE hibernate-mapping PUBLIC     
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"    
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">       
+<hibernate-mapping>      
+    <class name="com.gs.pojo.Ads" table="t_ads">    
+        <id name="id" type="string">     
+          <column name="id"/>  
+           <generator class="assigned" />
+        </id>    
+        <property name="title" type="string" length="50" not-null="true"></property>  
+        <property name="content" type="string" length="500" not-null="true"></property>
+        <property name="logo" type="string" length="500"></property>
+        <property name="ad_url" type="string" length="500"></property>
+        <property name="show_status" type="string" length="2"></property>
+        <property name="show_order" type="int"></property>
+        <property name="created_time" type="date"></property>
+        <property name="status" type="string" length="2"></property>
+    </class>    
+        
+</hibernate-mapping>

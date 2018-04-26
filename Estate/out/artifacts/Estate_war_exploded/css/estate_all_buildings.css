@@ -1,0 +1,33 @@
+
+a_buildings {
+	color:black;
+	padding:0;
+}
+
+a:link, a:visited {
+	text-decoration:none;
+}
+
+a:hover {
+	color:red;
+	text-decoration:none;
+}
+
+
+a:active {
+	color:red;
+}
+.heise{
+	color:black;
+	font-size:20px;
+}
+.asd{
+	color:#777;
+}
+.moenyRight{
+	color:red;
+	font-size:30px;
+	margin-left:300px;
+	font-weight:bolder;
+}
+

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>    
+<!DOCTYPE hibernate-mapping PUBLIC     
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"    
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">       
+<hibernate-mapping>      
+    <class name="com.gs.pojo.Manager" table="t_manager">    
+        <id name="id">     
+            <generator class="uuid"></generator>    
+        </id>
+        <property name="name" type="string" length="50" ></property>  
+        <property name="email" type="string" length="50" ></property>
+        <property name="pwd" type="string" length="50" ></property>
+        <property name="phone" type="string" length="11" ></property>
+        <property name="tel" type="string" length="11"></property>
+        <property name="headicon" type="string" length="500"></property>
+    </class>    
+</hibernate-mapping>

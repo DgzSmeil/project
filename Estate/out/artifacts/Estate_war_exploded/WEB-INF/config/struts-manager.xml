@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="managerPackage" namespace="/manager" extends="basePackage">
+    	<action name="*" class="managerAction" method="{1}">
+    		<result name="input">/index.jsp</result>
+    		<result name="success">/index.jsp</result>
+    		<result name="autologin">/WEB-INF/views/manager/autologin.jsp</result>
+    		<result name="logoutpage">/WEB-INF/views/manager/logoutpage.jsp</result>
+    		<result name="login">/WEB-INF/views/manager/manager_login.jsp</result>
+    		<result name="submit">/WEB-INF/views/manager/manager_registered.jsp</result>
+    		<result name="mngsys">/WEB-INF/views/manager/manager_home.jsp</result>
+    		<result name="home">/WEB-INF/views/manager/home.jsp</result>
+    		<result name="mgnInfo">/WEB-INF/views/manager/mgnInfo.jsp</result>
+    		<result name="mgnUpPwdPage">/WEB-INF/views/manager/mgnUpPwd.jsp</result>
+    		<result name="mgnUpPage">/WEB-INF/views/manager/mgnUp.jsp</result>
+    		<result name="returnjson" type="json"></result>
+    	</action>
+    </package>
+
+</struts>

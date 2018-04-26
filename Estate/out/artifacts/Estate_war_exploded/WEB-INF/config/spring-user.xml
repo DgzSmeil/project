@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	
+	<bean id="userDAO" class="com.gs.dao.impl.UserDAOImpl" autowire="byName" scope="prototype"></bean>
+	<bean id="userService" class="com.gs.service.impl.UserServiceImpl" autowire="byName" scope="prototype"></bean>
+	<bean id="userAction" class="com.gs.controller.UserAction" autowire="byName" scope="prototype"></bean>
+	
+	<!-- 点赞 -->
+	<bean id="likeDAO" class="com.gs.dao.impl.LikeDAOImpl" autowire="byName" scope="prototype"></bean>
+	<bean id="likeService" class="com.gs.service.impl.LikeServiceImpl" autowire="byName" scope="prototype"></bean>
+	<bean id="likeAction" class="com.gs.controller.LikeAction" autowire="byName" scope="prototype"></bean>
+	
+	<!-- 评论-->
+	<bean id="commentDAO" class="com.gs.dao.impl.CommentDAOImpl" autowire="byName" scope="prototype"></bean>
+	<bean id="commentService" class="com.gs.service.impl.CommentServiceImpl" autowire="byName" scope="prototype"></bean>
+	<bean id="commentAction" class="com.gs.controller.CommentAction" autowire="byName" scope="prototype"></bean>
+	
+	
+</beans>

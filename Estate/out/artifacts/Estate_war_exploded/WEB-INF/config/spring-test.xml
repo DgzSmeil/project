@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<bean id="testDAO" class="com.gs.dao.impl.TestDAOImpl" autowire="byName"></bean>
+	<bean id="testService" class="com.gs.service.impl.TestServiceImpl" autowire="byName"></bean>
+	<bean id="testAction" class="com.gs.controller.TestAction" autowire="byName" scope="prototype"></bean>
+	
+	
+	<bean id="agencyAction" class="com.gs.controller.AgencyAction" autowire="byName" scope="prototype"></bean>
+	<bean id="agencyDAO" class="com.gs.dao.impl.AgencyDAOImpl" autowire="byName" scope="prototype"></bean>
+	<bean id="agencyService" class="com.gs.service.impl.AgencyServiceImpl" autowire="byName" scope="prototype"></bean>
+	
+	<bean id="employeeAction" class="com.gs.controller.EmployeeAction" autowire="byName" scope="prototype"></bean>
+	<bean id="employeeDAO" class="com.gs.dao.impl.EmployeeDAOImpl" autowire="byName" scope="prototype"></bean>
+	<bean id="employeeService" class="com.gs.service.impl.EmployeeServiceImpl" autowire="byName" scope="prototype"></bean>
+	
+	<bean id="buildingsAction" class="com.gs.controller.BuildingsAction" autowire="byName" scope="prototype"></bean>
+	<bean id="buildingsDAO" class="com.gs.dao.impl.BuildingsDAOImpl" autowire="byName" scope="prototype"></bean>
+	<bean id="buildingsService" class="com.gs.service.impl.BuildingsServiceImpl" autowire="byName" scope="prototype"></bean>
+	
+	
+	<bean id="activityAction" class="com.gs.controller.ActivityAction" autowire="byName" scope="prototype"></bean>
+	<bean id="activityDAO" class="com.gs.dao.impl.ActivityDAOImpl" autowire="byName" scope="prototype"></bean>
+	<bean id="activityService" class="com.gs.service.impl.ActivityServiceImpl" autowire="byName" scope="prototype"></bean>
+	
+	<bean id="buildings_imgAction" class="com.gs.controller.Buildings_imgAction" autowire="byName" scope="prototype"></bean>
+	<bean id="buildings_imgDAO" class="com.gs.dao.impl.Buildings_imgDAOImpl" autowire="byName" scope="prototype"></bean>
+	<bean id="buildings_imgService" class="com.gs.service.impl.Buildings_imgServiceImpl" autowire="byName" scope="prototype"></bean>
+	
+	<bean id="messageAction" class="com.gs.controller.MessageAction" autowire="byName" scope="prototype"></bean>
+	<bean id="messageDAO" class="com.gs.dao.impl.MessageDAOImpl" autowire="byName" scope="prototype"></bean>
+	<bean id="messageService" class="com.gs.service.impl.MessageServiceImpl" autowire="byName" scope="prototype"></bean>
+	
+	<bean id="roomAction" class="com.gs.controller.RoomAction" autowire="byName" scope="prototype"></bean>
+	<bean id="roomDAO" class="com.gs.dao.impl.RoomDAOImpl" autowire="byName" scope="prototype"></bean>
+	<bean id="roomService" class="com.gs.service.impl.RoomServiceImpl" autowire="byName" scope="prototype"></bean>
+	
+	
+	<bean id="historyAction" class="com.gs.controller.HistoryAction" autowire="byName" scope="prototype"></bean>
+	<bean id="historyDAO" class="com.gs.dao.impl.HistoryDAOImpl" autowire="byName" scope="prototype"></bean>
+	<bean id="historyService" class="com.gs.service.impl.HistoryServiceImpl" autowire="byName" scope="prototype"></bean>
+	
+</beans>

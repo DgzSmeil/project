@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+    <package name="missionPackage" namespace="/mission" extends="basePackage">
+    	<action name="*" class="missionAction" method="{1}">
+    		<result name="addpage">/WEB-INF/views/mission/missionAdd.jsp</result>
+      		<result name="add" type="redirectAction">/list?emp_id=${mission.emp_id}</result>		   		
+     		<result name="list">/WEB-INF/views/mission/missionList.jsp</result>
+    		<result name="pager" type="json">/WEB-INF/views/mission/missionList.jsp</result>
+    		<result name="update" type="redirectAction">/list?emp_id=${mission.emp_id}</result>	
+    		<result name="strap" >/WEB-INF/views/mission/mission_list.jsp</result>	
+    		<result name="findSalary" type="json">/WEB-INF/views/mission/mission_list.jsp</result>
+    		<result name="chart" type="json">/WEB-INF/views/sale/emp_chart.jsp</result>
+    		<result name="emp_chart">/WEB-INF/views/sale/emp_chart.jsp</result>	   		
+    	</action>
+    </package>
+
+</struts>

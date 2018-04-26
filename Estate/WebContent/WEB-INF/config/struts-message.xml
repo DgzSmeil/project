@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="messagePackage" namespace="/message" extends="basePackage">
+    	<action name="*" class="messageAction" method="{1}">
+    		<result name="list" type="json">/WEB-INF/views/message/message_list.jsp</result>
+    		<result name="list1">/WEB-INF/views/message/message_list.jsp</result>
+    		<result name="status" type="redirectAction">/message/list1?agency_id=${message.agency_id}</result>
+    		<result name="update">/WEB-INF/views/message/message_update.jsp</result>
+    		<result name="updateSave" type="redirectAction">/message/list1?agency_id=${message.agency_id}</result>
+    		<result name="look">/WEB-INF/views/message/message_look.jsp</result>
+    		<result name="add" type="json"></result>
+    		<result name="myall">/WEB-INF/views/message/message_all.jsp</result>
+    		<result name="myall2" type="json">/WEB-INF/views/message/message_all.jsp</result>
+    	</action>
+    </package>
+
+</struts>

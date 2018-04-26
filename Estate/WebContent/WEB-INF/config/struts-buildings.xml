@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="buildingsPackage" namespace="/builds" extends="basePackage">
+    	<action name="*" class="buildingsAction" method="{1}">
+    		<result name="addInfo">/WEB-INF/views/buildings/buildingsAdd.jsp</result>
+    		<result name="add" type="redirectAction">/builds/list1?agency_id=${builds.agency_id}</result>
+    		<result name="list" type="json"></result>
+    		<result name="list1">/WEB-INF/views/buildings/list.jsp</result>
+    		<result name="look">/WEB-INF/views/buildings/buildingsLook.jsp</result>
+    		<result name="update">/WEB-INF/views/buildings/buildingsUpdate.jsp</result>
+    		<result name="updateSave" type="redirectAction">/builds/look?builds.id=${builds.id}</result>
+    		<result name="status" type="redirectAction">/builds/list1?agency_id=${builds.agency_id}</result>
+    		<result name="addimg">/WEB-INF/views/buildings/buildings_imgAdd.jsp</result>
+    		<result name="allbuilds">/WEB-INF/views/buildings/buildings_all.jsp</result>
+    		<result name="lookbuildings">/WEB-INF/views/buildings/buildings_look.jsp</result>
+    		<result name="ditu">/WEB-INF/views/buildings/index.jsp</result>
+    		<result name="lookagency2" type="json">/WEB-INF/views/agency/agency_look.jsp</result>
+    		<result name="lookagency">/WEB-INF/views/agency/agency_look.jsp</result>
+    		<result name="chart" type="json">/WEB-INF/views/buildings/buildings_chart.jsp</result>
+    		<result name="sale_chart" >/WEB-INF/views/buildings/buildings_chart.jsp</result>
+    		<!-- manager start -->
+    		<result name="mngbuildpage">/WEB-INF/views/manager/manager_buildings.jsp</result>
+    		<result name="buildingslook">/WEB-INF/views/manager/mng_buildingslook.jsp</result>
+    		<result name="returnjson" type="json"></result>
+    		<result name="jisuan">/WEB-INF/views/buildings/test.jsp</result>
+    		<!-- manager end -->
+    	</action>
+    </package>
+
+</struts>

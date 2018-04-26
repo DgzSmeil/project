@@ -1,0 +1,20 @@
+<?xml version="1.0"?>    
+<!DOCTYPE hibernate-mapping PUBLIC     
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"    
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">       
+<hibernate-mapping>      
+    <class name="com.gs.pojo.Mission" table="t_mission">    
+       <id name="id">     
+           <generator class="uuid"/>    
+       </id>    
+       <property name="quantity" type="int"/>  
+       <property name="monthes" type="int"/> 
+       <property name="emp_id" type="string" length="36"/>  
+       <property name="bonus_percent" type="double"/>
+       <property name="sales" type="int"/>
+       <property name="salary" type="double"/>  
+       <property name="yearmonth" type="string" length="50"/>  
+       <many-to-one name="employee" column="emp_id" class="com.gs.pojo.Employee" lazy="false" insert="false" update="false"></many-to-one>
+    </class> 
+        
+</hibernate-mapping>

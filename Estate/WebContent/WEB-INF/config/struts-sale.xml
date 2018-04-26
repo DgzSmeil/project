@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+    <package name="salePackage" namespace="/sale" extends="basePackage">
+    	<action name="*" class="saleAction" method="{1}">
+    		<result name="addpage">/WEB-INF/views/sale/saleAdd.jsp</result>
+    		<result name="add" type="redirectAction">/list?emp_id=${sale.emp_id}</result>
+    		<result name="list">/WEB-INF/views/sale/salelist.jsp</result>
+    		<result name="list1" type="redirectAction">/list?emp_id=${employee.id}</result>
+    		<result name="pager" type="json">/WEB-INF/views/sale/salelist.jsp</result>
+    		<result name="status" type="json"></result>
+    		<result name="look">/WEB-INF/views/sale/salelook.jsp</result>
+    		<result name="update" type="redirectAction">/list?emp_id=${sale.emp_id}</result>
+    		<result name="check">/WEB-INF/views/sale/owners.jsp</result>
+    		<result name="strap" >/WEB-INF/views/sale/sale_list.jsp</result>
+    		<result name="agencysale" type="json">/WEB-INF/views/sale/sale_list.jsp</result>
+			<result name="chart" type="json">/WEB-INF/views/sale/sale_chart.jsp</result>
+    		<result name="sale_chart" >/WEB-INF/views/sale/sale_chart.jsp</result>
+    	</action>
+    </package>
+</struts>

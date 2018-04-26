@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="appointmentPackage" namespace="/appointment" extends="basePackage">
+    	<action name="*" class="appointmentAction" method="{1}">
+    		<result name="list">/WEB-INF/views/appointment/appointmentList.jsp</result>
+    		<result name="list1" type="redirectAction">/list?emp_id=${appointment.emp_id}</result>
+    		<result name="pager" type="json">/WEB-INF/views/appointment/appointmentList.jsp</result>
+    		<result name="status" type="json"></result>
+    		<result name="update" type="redirectAction">/list?emp_id=${appointment.emp_id}</result>
+    		<result name="judge">/WEB-INF/views/customer/customer_add.jsp</result>
+    		<result name="add" type="json"></result>
+    		
+    		<result name="strap">/WEB-INF/views/appointment/appointment_list.jsp</result>
+    		<result name="listagency" type="json">/WEB-INF/views/appointment/appointment_list.jsp</result>
+    		<result name="myall">/WEB-INF/views/appointment/appointment_myall.jsp</result>
+    		<result name="myall2" type="json">/WEB-INF/views/appointment/appointment_myall.jsp</result>
+    	</action>
+    </package>
+
+</struts>

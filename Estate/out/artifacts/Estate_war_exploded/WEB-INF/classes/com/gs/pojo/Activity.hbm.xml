@@ -1,0 +1,24 @@
+<?xml version="1.0"?>    
+<!DOCTYPE hibernate-mapping PUBLIC     
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"    
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">       
+<hibernate-mapping>      
+    <class name="com.gs.pojo.Activity" table="t_activity">    
+        <id name="id">     
+            <generator class="uuid"/>    
+        </id>    
+        <property name="title" column="title" type="string" length="50" not-null="true"/>  
+        <property name="start_time" column="start_time" type="date" />    
+        <property name="end_time" column="end_time" type="date"/>    
+        <property name="address" column="address" type="string" length="100"/>    
+        <property name="content" column="content" type="string" length="500" />    
+        <property name="logo" column="logo" type="string" length="500"/>    
+        <property name="buildings_id" column="buildings_id" type="string" length="36"/>
+        <property name="agency_id" column="agency_id" type="string" length="36"/>
+        <property name="status" column="status" type="string" length="2"/>
+        
+        <many-to-one name="buildings"  column="buildings_id" class="com.gs.pojo.Buildings"  lazy="false"
+		insert="false" update="false" not-found="ignore"></many-to-one>        
+    </class>    
+        
+</hibernate-mapping>

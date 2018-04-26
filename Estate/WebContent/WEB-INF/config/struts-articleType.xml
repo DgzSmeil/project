@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="articleTypePackage" namespace="/articleType" extends="basePackage">
+    	<action name="*" class="articleTypeAction" method="{1}">
+    		<result name="ArticleTypePage">/WEB-INF/views/articleType/manager_article_type.jsp</result>
+    		<result name="articleTypeAddPage">/WEB-INF/views/articleType/mng_articleTypeAdd.jsp</result>
+    		<result name="articleTypeEditPage">/WEB-INF/views/articleType/mng_articleTypeEdit.jsp</result>
+    		<result name="articleTypeLook">/WEB-INF/views/articleType/mng_articleTypeLook.jsp</result>
+    		<result name="returnjson" type="json"></result>
+    	</action>
+    </package>
+</struts>

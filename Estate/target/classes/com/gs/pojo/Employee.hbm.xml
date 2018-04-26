@@ -1,0 +1,31 @@
+<?xml version="1.0"?>    
+<!DOCTYPE hibernate-mapping PUBLIC     
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"    
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">       
+<hibernate-mapping>      
+    <class name="com.gs.pojo.Employee" table="t_employee">    
+        <id name="id">     
+            <generator class="uuid"/>    
+        </id>    
+       <property name="name" type="string" length="20"/>  
+       <property name="email" type="string" length="50" unique="true"/> 
+       <property name="pwd" type="string" length="50" not-null="true"/>  
+       <property name="phone" type="string" length="11" unique="true" not-null="true"/>  
+       <property name="qq" type="string" length="20"/>  
+       <property name="wechat" type="string" length="50"/>  
+       <property name="gender" type="string" length="2"/> 
+       <property name="exp" type="string" length="50"/> 
+       <property name="des" type="string" length="100"/>  
+       <property name="address" type="string" length="100"/>  
+       <property name="basic_salary" type="double" not-null="true"/>  
+       <property name="headicon" type="string" length="500"/>  
+       <property name="intro" type="string" length="500"/>
+       <property name="angency_id" type="string" length="36"/>  
+       <property name="building_id" type="string" length="36"/>  
+       <property name="created_time" type="date"/>  
+       <property name="status" type="string" length="2"/>
+   	
+    </class>
+    
+        
+</hibernate-mapping>

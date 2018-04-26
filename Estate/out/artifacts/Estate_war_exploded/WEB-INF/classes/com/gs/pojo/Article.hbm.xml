@@ -1,0 +1,19 @@
+<?xml version="1.0"?>    
+<!DOCTYPE hibernate-mapping PUBLIC     
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"    
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">       
+<hibernate-mapping>      
+    <class name="com.gs.pojo.Article" table="t_article">    
+        <id name="id">     
+            <generator class="uuid"/>    
+        </id>    
+        <property name="title" column="title" type="string" length="50" not-null="true"/>  
+        <property name="abstracts" column="abstracts" type="string" length="100" not-null="true"/>    
+        <property name="content" column="content" type="string" length="500" not-null="true"/>    
+        <property name="logo" column="logo" type="string" length="500" />    
+        <property name="created_time" column="created_time" type="date"  />    
+        <property name="article_type" column="article_type" type="string" length="20" />
+        <property name="status" column="status" type="string" length="2" />    
+    </class>    
+        
+</hibernate-mapping>

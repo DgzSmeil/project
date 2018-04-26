@@ -1,0 +1,18 @@
+<?xml version="1.0"?>    
+<!DOCTYPE hibernate-mapping PUBLIC     
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"    
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">       
+<hibernate-mapping>      
+    <class name="com.gs.pojo.Room" table="t_room">    
+        <id name="id">     
+            <generator class="uuid"/>    
+        </id>    
+        <property name="house_id" column="house_id" type="string" length="50"/>    
+        <property name="building_id" column="building_id" type="string" length="36"/>    
+        <property name="name" column="name" type="string" length="36"/>    
+        <property name="sale_status" column="sale_status" type="string" length="20" not-null="true"/>    
+   		<many-to-one name="house" column="house_id" class="com.gs.pojo.House" lazy="false" insert="false" update="false"></many-to-one>
+   		<many-to-one name="building" column="building_id" class="com.gs.pojo.Building" lazy="false" insert="false" update="false"></many-to-one>
+   	</class>    
+        
+</hibernate-mapping>

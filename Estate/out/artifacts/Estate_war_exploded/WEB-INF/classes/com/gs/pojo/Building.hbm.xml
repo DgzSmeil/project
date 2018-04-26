@@ -1,0 +1,21 @@
+<?xml version="1.0"?>    
+<!DOCTYPE hibernate-mapping PUBLIC     
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"    
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">       
+<hibernate-mapping>      
+    <class name="com.gs.pojo.Building" table="t_building">    
+        <id name="id">     
+            <generator class="uuid"/>    
+        </id>    
+        <property name="name" column="name" type="string" length="50"/>  
+        <property name="total_floor" column="total_floor" type="int" not-null="true"/>    
+        <property name="total_lift" column="total_lift" type="int" not-null="true"/>    
+        <property name="floor_rooms" column="floor_rooms" type="int" not-null="true"/>    
+        <property name="total_room" column="total_room" type="int" not-null="true"/>    
+        <property name="buildings_id" column="buildings_id" type="string" length="36"/>
+        <property name="created_time" column="created_time" type="date"/>
+        <property name="status" column="status" type="string" length="2"/>
+  		<many-to-one name="buildings" column="buildings_id" class="com.gs.pojo.Buildings" lazy="false" insert="false" update="false"></many-to-one>
+    </class>    
+        
+</hibernate-mapping>

@@ -1,0 +1,42 @@
+@charset "utf-8";
+/* CSS Document */
+/* haozi / hao.chen@qq.com / 2011.06.15 */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,blockquote,th,td,p{margin:0;padding:0}
+input,button,select,textarea{outline:none}
+li{list-style:none}img{border:none}textarea{resize:none}
+body{color:#424242;background:#fff;word-break:break-all;word-wrap:break-word;text-align:center}
+body,input,textarea{font-size:12px;font-family:\5b8b\4f53,Verdana,Arial}
+a{color:#818181;text-decoration:none;outline:none}
+a:hover{color:#00baf2;}
+.wrap{width:1000px;margin:0 auto;text-align:left;position:relative}
+/*clearfix*/
+.clearfix{overflow:auto;_height:1%}
+.clear{display:block;font-size:0;height:0;overflow:hidden; clear:both;}
+.clearall{ clear:both;}
+
+.fl{ float:left;}
+.fr{ float:right;}
+.font14{font-size:14px;font-weight:bold}
+.font16{font-size:16px;}
+.font18{font-size:18px;}
+.font22{font-size:22px;}
+.font12{ font-size:12px;}
+.tl{ text-align:left;}
+.tc{ text-align:center;}
+.tr{ text-align:right;}
+.hr30{ height:30px;}
+
+.bor{ border:1px solid #ebebeb;}
+.bgfff{ background:#fff;}
+.c_blue,.c_blue a,.c_blue a:link,.c_blue a:visited,a.c_blue:link,a.c_blue:visited{color:#00848E}
+.c_red01,.c_red01 a,.c_red01 a:link,.c_red01 a:visited,a.c_red01:link,a.c_red01:visited{color:#cc0000}
+.c_gray,.c_gray a,.c_gray a:link,.c_gray a:visited,a.c_gray:link,a.c_gray:visited{color:#666}
+.c_gray02,.c_gray02 a,.c_gray02 a:link,.c_gray02 a:visited,a.c_gray02:link,a.c_gray02:visited{color:#b2b2b2;}
+
+.m5{margin:5px}.m10{margin:10px}.m15{margin:15px}.m20{margin:20px}.mt5{margin-top:5px}.mt10{margin-top:10px}.mt15{margin-top:15px}.mt20{margin-top:20px}.mb5{margin-bottom:5px}.mb10{margin-bottom:10px}.mb15{margin-bottom:15px}.mb20{margin-bottom:20px}.ml5{margin-left:5px}.ml10{margin-left:10px}.ml15{margin-left:15px}.ml20{margin-left:20px}.mr5{margin-right:5px}.mr10{margin-right:10px}.mr15{margin-right:15px}.mr20{margin-right:20px}
+
+.yahei{ font-family:Microsoft YaHei;}
+.p10{ padding:10px;}
+.mt10{ margin-top:10px;}
+.pt30{ padding-top:30px;}
+.pt10{ padding-top:10px;}

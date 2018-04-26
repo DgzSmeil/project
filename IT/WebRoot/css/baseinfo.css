@@ -1,0 +1,54 @@
+@chart:utf8;
+/**********
+** By Ravens
+** Date 2015-07-22
+***********/
+/*base*/
+*{margin: 0;padding: 0;font-family: "微软雅黑";word-wrap:break-word;word-break:break-all;outline: none;}
+body{color: #424242;font-size:14px;line-height:1.75;background:#FFF;min-width: 1230px;}
+a{color: #424242;text-decoration: none;/*transition: all 0.5s ease 0s;*/}
+a:hover,.Cur a{color: #000;}
+dl,ul,ol{-webkit-margin-before:0;-webkit-margin-after:0;list-style: none;}
+input[type="text"],input[type="number"],input[type="tel"],input[type="password"],textarea	{border:1px solid #EEE;border-left-color: #DDD;border-top-color: #DDD;padding:2px 3px;width: 120px;line-height: 24px;height: 24px;}
+input[type="text"]:focus,input[type="number"]:focus,input[type="tel"]:focus,input[type="password"]:focus,textarea:focus	{border-color:#242424;outline: none;}
+input.redb,textarea.redb,input:focus.redb,textarea:focus.redb{border-color:#242424;}
+
+button	{line-height: 1 !important;*margin: 0px 10px;}
+button,a.btn	{border:none;cursor: pointer;height: 30px;line-height: 30px;color:#FFF;background: #15b1e4;white-space:nowrap;padding: 0 15px;}
+button.gray,a.btn.gray	{background: #747474;color:#FFF;}
+button.bg_org,a.btn.bg_org	{background: #FFAA28;}
+button.btn100,a.btn.btn100{width: 100px;}
+button:hover,a.btn:hover	{background: #33c8f5;}
+
+table	{margin:5px auto;border-collapse: collapse;border-spacing: 0;width: 100%;}
+td,th	{padding: 0px;border:1px solid #DDD;padding:5px;}
+
+/**/
+.cur-p{cursor: pointer;}
+.oneLine{text-overflow:ellipsis;white-space:nowrap;overflow: hidden;}
+
+/*Font Color*/
+.red	{color: #c01920;}
+a:hover.red{color: #950b11;}
+.gre	{color: #00baf2;}
+.gray	{color: #A7A7A7;}
+.c3		{color: #242424;}
+.c6		{color: #242424;}
+.c9		{color: #747474;}
+.org	{color: #FFAA28;}
+.blue	{color: #01BAF2;}
+
+/*Display*/
+.disp-n	{display: none;}
+.disp-b	{display: block;}
+.disp-ib,a.btn	{display: inline-block;}
+
+/*Font Style*/
+.fb {font-weight:bold;}
+.fs {font-family:'宋体';}
+.fa {font-family:Arial;}
+.del {text-decoration: line-through;}
+
+/*Position*/
+.pos-r {position: relative;}
+.pos-a {position: absolute;}

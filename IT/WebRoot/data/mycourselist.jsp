@@ -1,0 +1,294 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@page import="SQLBean.TeacherBean"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="renderer" content="webkit">
+<title></title>
+<link rel="stylesheet" href="systemvo/css/pintuer.css">
+<link rel="stylesheet" href="systemvo/css/admin.css">
+<script src="systemvo/js/jquery.js"></script>
+<script src="systemvo/js/pintuer.js"></script>
+</head>
+<body>
+<%
+TeacherBean teacherbean = (TeacherBean)session.getAttribute("teacherbean");
+%>
+<form method="post" action="" id="listform">
+<c:if test="${msg!=null}">
+   		<script type="text/javascript">
+   			alert("${msg}");
+   		</script>
+  </c:if>
+  <div class="panel admin-panel">
+    <div class="panel-head"><strong class="icon-reorder"> 我的课程列表</strong> <a href="" style="float:right; display:none;">添加课程</a></div>
+    <div class="padding border-bottom">
+      <ul class="search" style="padding-left:10px;">
+        <li> <a class="button border-main icon-plus-square-o" href="<%=basePath %>data/courseadd.jsp"> 发布课程</a> </li>
+        <li>搜索：</li>
+        <li>
+          <input type="text" placeholder="请输入搜索关键字" name="keywords" id="word" class="input" style="width:250px; line-height:17px;display:inline-block" />
+          <input type="hidden" name="keywords" id="kword" value="">
+          <a href="javascript:void(0);" class="button border-main icon-search" onclick="return changesearch();"> 搜索</a></li>
+      </ul>
+    </div>
+    <table class="table table-hover text-center">
+     <tr>
+		<th align='center' width="10%">图片网址</th>
+		<th align='center' width="8%">课程名称</th>
+		<th align='center' width="8%">讲师名称</th>
+		<th align='center' width="8%">课程价格</th>
+		<th align='center' width="8%">是否有效</th>
+		<th align='center' width="8%">是否付费</th>
+		<th align='center' width="8%">审核状态</th>
+		<th align='center' width="8%">原    因</th>
+		<th align='center' width="30%">操    作</th>
+		</tr>
+        <tr>
+          <c:forEach items="${mycourserlist}" var="y">
+			<tr height='40'>
+				<td align='center'><img src="${y.picture_url}" width="50px" height="50px"></td>
+				<td align='center'>${y.course_name}</td>
+				<td align='center'>${y.replay_username}</td>
+				<td align='center'>${y.price}</td>
+				<td align='center'>
+					<c:if test="${y.effective==1}">
+						有效
+					</c:if>
+					<c:if test="${y.effective!=1}">
+						无效
+					</c:if>
+				</td>
+				<td align='center'>
+					<c:if test="${y.ismoney==0}">
+						免费
+					</c:if>
+					<c:if test="${y.ismoney==1}">
+						会员
+					</c:if>
+				</td>
+				<td align='center'>
+					<c:if test="${y.status ==0 }">
+						未审核
+					</c:if>
+					<c:if test="${y.status ==1 }">
+						已审核
+					</c:if>
+					<c:if test="${y.status ==2 }">
+						审核未通过
+					</c:if>
+				</td>
+				<td align='center'>${y.reason}</td>
+				<td align="center">
+					<div class="button-group"> 
+						<a class="button border-main icon-edit" href="<%=basePath %>courseservlet?courseid=${y.course_id}&order=update"> 修 改 </a>&nbsp;&nbsp;
+						<a class="button border-red icon-trash-o" href="<%=basePath %>courseservlet?courseid=${y.course_id}&order=delete&name=${y.replay_username}" onclick="javascript:if(confirm('删除确认')){return true;}else{return false;}"> 删 除 </a>
+						<c:if test="${y.status !=1 }">
+							<a class="button border-main icon-edit"  href="<%=basePath %>courseservlet?courseid=${y.course_id}&order=shenhe&name=${y.replay_username}"> 提交审核</a>
+						</c:if>
+						<c:if test="${y.status ==1 }">
+							<a class="button border-main icon-edit"  href="<%=basePath %>sectionservlet?courseid=${y.course_id}&order=list&name=${y.replay_username}"> 章节列表</a>
+						</c:if>
+					</div>
+				</td>
+			</tr>
+		</c:forEach>
+      <tr width="100%">
+		<td class="pagelist" colspan="10" align="center">
+			<span class="curren">总记录数&nbsp;&nbsp;${pager.pagebarsum }</span>
+			<span class="curren">页码&nbsp;&nbsp;${pager.currentpage }/${pager.sumpage }页</span>
+			<a href="<%=basePath %>courseservlet?order=mycourselist&currenpage=1&handle=firstpage&name=${requestScope.name}">首   页</a>
+			<a href="<%=basePath %>courseservlet?order=mycourselist&currenpage=${pager.currentpage }&handle=uppage&name=${requestScope.name}">上一页</a>
+			<a href="<%=basePath %>courseservlet?order=mycourselist&currenpage=${pager.currentpage }&handle=downpage&name=${requestScope.name}">下一页</a>
+			<a href="<%=basePath %>courseservlet?order=mycourselist&currenpage=${pager.sumpage }&handle=lastpage&name=${requestScope.name}">尾  页</a> 
+		</td>
+      </tr>
+    </table>
+<script type="text/javascript">
+//搜索
+function changesearch(){	
+	if($("#word").val()==""){
+		alert("请输入关键字");
+		return false;
+	}else{
+		var name = $("#word").val();
+		location.href="<%=basePath%>courseservlet?order=coursesousuo&keywords="+name;
+		return true;
+	}
+}
+
+//单个删除
+function del(id,mid,iscid){
+	if(confirm("您确定要删除吗?")){
+		
+	}
+}
+
+//全选
+$("#checkall").click(function(){ 
+  $("input[name='id[]']").each(function(){
+	  if (this.checked) {
+		  this.checked = false;
+	  }
+	  else {
+		  this.checked = true;
+	  }
+  });
+})
+
+//批量删除
+function DelSelect(){
+	var Checkbox=false;
+	 $("input[name='id[]']").each(function(){
+	  if (this.checked==true) {		
+		Checkbox=true;	
+	  }
+	});
+	if (Checkbox){
+		var t=confirm("您确认要删除选中的内容吗？");
+		if (t==false) return false;		
+		$("#listform").submit();		
+	}
+	else{
+		alert("请选择您要删除的内容!");
+		return false;
+	}
+}
+
+//批量排序
+function sorts(){
+	var Checkbox=false;
+	 $("input[name='id[]']").each(function(){
+	  if (this.checked==true) {		
+		Checkbox=true;	
+	  }
+	});
+	if (Checkbox){	
+		
+		$("#listform").submit();		
+	}
+	else{
+		alert("请选择要操作的内容!");
+		return false;
+	}
+}
+
+
+//批量首页显示
+function changeishome(o){
+	var Checkbox=false;
+	 $("input[name='id[]']").each(function(){
+	  if (this.checked==true) {		
+		Checkbox=true;	
+	  }
+	});
+	if (Checkbox){
+		
+		$("#listform").submit();	
+	}
+	else{
+		alert("请选择要操作的内容!");		
+	
+		return false;
+	}
+}
+
+//批量推荐
+function changeisvouch(o){
+	var Checkbox=false;
+	 $("input[name='id[]']").each(function(){
+	  if (this.checked==true) {		
+		Checkbox=true;	
+	  }
+	});
+	if (Checkbox){
+		
+		
+		$("#listform").submit();	
+	}
+	else{
+		alert("请选择要操作的内容!");	
+		
+		return false;
+	}
+}
+
+//批量置顶
+function changeistop(o){
+	var Checkbox=false;
+	 $("input[name='id[]']").each(function(){
+	  if (this.checked==true) {		
+		Checkbox=true;	
+	  }
+	});
+	if (Checkbox){		
+		
+		$("#listform").submit();	
+	}
+	else{
+		alert("请选择要操作的内容!");		
+	
+		return false;
+	}
+}
+
+
+//批量移动
+function changecate(o){
+	var Checkbox=false;
+	 $("input[name='id[]']").each(function(){
+	  if (this.checked==true) {		
+		Checkbox=true;	
+	  }
+	});
+	if (Checkbox){		
+		
+		$("#listform").submit();		
+	}
+	else{
+		alert("请选择要操作的内容!");
+		
+		return false;
+	}
+}
+
+//批量复制
+function changecopy(o){
+	var Checkbox=false;
+	 $("input[name='id[]']").each(function(){
+	  if (this.checked==true) {		
+		Checkbox=true;	
+	  }
+	});
+	if (Checkbox){	
+		var i = 0;
+	    $("input[name='id[]']").each(function(){
+	  		if (this.checked==true) {
+				i++;
+			}		
+	    });
+		if(i>1){ 
+	    	alert("只能选择一条信息!");
+			$(o).find("option:first").prop("selected","selected");
+		}else{
+		
+			$("#listform").submit();		
+		}	
+	}
+	else{
+		alert("请选择要复制的内容!");
+		$(o).find("option:first").prop("selected","selected");
+		return false;
+	}
+}
+
+</script>
+</body>
+</html>

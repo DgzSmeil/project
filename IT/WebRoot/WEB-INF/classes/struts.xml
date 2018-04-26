@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<!-- 允许动态调用action中的函数通过!加上函数的名称来访问 -->
+    <constant name="struts.enable.DynamicMethodInvocation" value="true" />
+   	<!-- 指定WEB应用的编码集，相当于调用HttpServletRequest.setCharacterEncodint方法 -->
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<!-- 修改配置文件后及时更新到服务器上 -->
+	<constant name="struts.configuration.xml.reload" value="true" />
+	<!--  开发提示：出错时打印更详细的信息-->
+	<constant name="struts.devMode" value="false" />
+	<!-- 设置struts默认主题 
+   	<constant name="struts.ui.theme" value="simple" ></constant>-->
+   	<!-- 使用国际化 -->
+   	<constant name="struts.custom.i18n.resources" value="globalMessages"/>
+   	<!-- 指定的默认上传文件的临时路径 -->
+   	<constant name="struts.multipart.saveDir" value="/tmp"/>
+ 	<!-- example -->
+    <include file="conf\action\example.xml"/>
+	<include file="conf\action\example-ajax.xml"/>
+    <!-- 
+    	配置action类
+    		1、name配置的是介绍p页面action的路径
+    		2、class配置的是该action所在的包的路径
+    	result配置的是跳转的页面的路径
+    		1、name配置的是在actin中返回的页面的常亮值
+    		2、/加上要访问的页面
+    		3、默认的type为forword,可以先访问action在回来配置type=redirectAction
+     --> 
+	<package name="Action" extends="struts-default" namespace="/" >
+		 <interceptors>
+			<interceptor name="Quanxian" class="Interceptor.Quanxian"></interceptor>
+			<interceptor name="Luntan" class="Interceptor.Luntan"></interceptor>
+			<interceptor name="Function" class="Interceptor.Function"></interceptor>
+			<interceptor-stack name="interceptor">
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<interceptor-ref name="timer"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="interceptor"></default-interceptor-ref>
+		<!-- 配置系统全局result -->
+		<global-results>
+			<result name="error">/error.jsp</result>
+		</global-results>
+		<!--全局的异常处理 -->
+		<global-exception-mappings>
+			<exception-mapping result="error" exception="java.lang.NullPointerException"></exception-mapping>
+		</global-exception-mappings>
+		<action name="MyinfoAction" class="Action.MyinfoAction">
+			<!-- 配置的是拦截器,用于处理重复提交数据
+				<interceptor-ref name="defaultStack"/>
+				<interceptor-ref name="token"/>
+				配置错误页面的处理
+				<result name="invalid.token">/T4/token.jsp</result>
+			 -->
+			<result name="input">/datainfo/info.jsp</result>
+			<result name="success">/datainfo/info.jsp</result>
+		</action>
+		<action name="FileUpAction" class="Action.FileUpAction">
+			<result name="success">/fileup/upfilesuccess.jsp</result>
+			<result name="input">/fileup/upfile.jsp</result>
+			<interceptor-ref name="fileUpload">
+				<!-- 允许上传的文件类型  -->
+				<param name="allowedTypes">image/bmp,image/png,image/gif,image/jpeg</param>
+				<!--上传文件的最大容量 单位字节  -->
+				<param name="maximumSize">20000000</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+		<action name="FileDownAction" class="Action.FileDownAction">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success" type="stream">
+				<!-- 定义相关参数 -->
+				<param name="contentType">${contenttype}</param>
+				<param name="inputName">InputStream</param>
+				<param name="bufferSize">4096</param>
+				<param name="contentDisposition">attachment;filename=${filename}</param>
+			</result>
+		</action>
+	</package>
+</struts>

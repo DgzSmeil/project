@@ -1,0 +1,128 @@
+@charset "gb2312";body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td{padding:0;margin:0}
+table{border-collapse:collapse;border-spacing:0}
+fieldset,img,input{border:0}
+address,caption,cite,code,dfn,em,strong,th,var{font-weight:normal;font-style:normal}
+ol,ul,li{list-style:none}
+caption,th{text-align:left}
+h1,h2,h3,h4,h5,h6{font-weight:normal;font-size:100%}
+a{color:#3665c3;text-decoration:none}
+a:hover{ text-decoration:underline}
+.bluelink a{color:#0543a0}
+strong{font-weight: 800;}
+.clear{clear:both;font-size:0;overflow:hidden;}
+body{font:12px/2 "宋体",Arial,Tahoma;}
+#wrap{float: left;width: 100%;}
+/*面包屑*/
+.header{float: left;line-height: 42px;width: 100%;background: #fafafa;border-bottom: 1px solid #e5e5e5;height: 42px;}
+.header .head_box{width:1058px;margin: auto;}
+.header .nav {float: left;width: 70%;}
+.header .nav a{display:inline-block;}
+.header .nav code{display: inline-block;color: #666;margin: 0 4px;}
+.header .fl{background: url(http://img.yjbys.com/2013/bg.gif) no-repeat scroll 2px -980px;padding-left: 10px;width: 300px;display: inline-block;}
+.header .fl code{background: url("http://img.yjbys.com/ww/bishi/icon.gif") no-repeat scroll 7px 2px;padding: 0px 8px;}
+.header a.logo{display: inline-block;width:130px;height: 34px;padding-right: 4px;background: url("http://img.yjbys.com/common/yjbys_clogo.png") no-repeat;float: left;margin-top: 4px;}
+.header a.lanmu{margin-right: 5px;background: #6BBB2E;color: #ffffff;display: inline-block;font-size: 12px;height: 20px;line-height: 20px;padding: 1px 5px;margin-top: 10px;text-align: center;width: auto;float: left;}
+
+/*search */
+.search{float: right;margin-right: 15px;margin-top: 6px;width: 280px;}
+.search #searchBar{float:left;width: 200px;border: 1px solid #d8d8d8;height: 28px;margin-right: 5px;border-radius: 3px;-webkit-border-radius: 3px;-moz-border-radius: 3px;-ms-border-radius: 3px;padding-left: 3px;font-size: 12px;padding: 0 10px;}
+.search #search_results{width: 50px;height: 28px;background: #6BBB2E;color: #fff;text-align: center;font-size: 14px;border: 0 none;position: relative;top: 1px;border-radius: 3px;-webkit-border-radius: 3px;-moz-border-radius: 3px;-ms-border-radius: 3px;font-family: "Microsoft YaHei";cursor: pointer;float: right;line-height: 28px;}
+.search #search_results:hover{opacity: .8;text-decoration: none;}
+
+/*上下篇*/
+.previous{float: left;width: 100%;color: #666;margin-top: 10px;font-size: 14px;}
+.previous code{float: left;width: 50%;}
+.previous span{float:right;}
+.previous a{color: #3665c3;}
+
+#main{margin:auto;width:1058px;clear:both;}
+/*left*/
+.main_left{float:left;text-align:left;width: 735px;margin-bottom: 15px;margin-top:10px;}
+.main_left .title{line-height: 30px;text-align: center;color: #003366;font: bold 26px "微软雅黑";}
+.main_left .l_top{color: #999;font-size: 12px;text-align: center;padding-bottom: 5px;margin-top: 10px;}
+.main_left .l_top span{margin:0 10px}
+.main_left .l_top span.phone a{ display:inline-block; padding-left:12px; background:url(http://img.yjbys.com/common/phone.png) no-repeat left center;}
+
+.main_left .content{width: 100%;font-size: 16px!important;}
+.main_left .content p{color: #444;line-height: 30px;margin: 5px 0;}
+.main_left .content h2{font-size: 18px; text-align: left; font-weight: bold; line-height: 31px; clear: both; color: #ff0000; margin-top:15px;}
+
+/*关于*/
+.about{color: #666;line-height: 30px;font-size: 14px!important;width: 100%;float: left;margin-top: 10px;}
+.about .page{float: left;}
+.about li{float:left;width:45%;overflow:hidden;height:30px}
+.about span{margin-right:10px}
+.about .about_title{background:none repeat scroll 0 0 transparent;font:bold 14px/30px "宋体";height:30px;padding-left:0;color: #333;}
+.about .ul2 {background: url(http://img.yjbys.com/lanmu/tuijian.png) no-repeat left center;padding-left: 110px;height: 120px;margin-bottom: 12px;}
+
+/*分页*/
+.pager{text-align: center;float: left;margin-bottom: 10px;width:100%}
+.pager li{margin: 3px;color: #FFF;text-decoration: none;background-color: #FFF; font-family: Arial;display: inline-block;padding: 0;}
+.pager li.thisclass{background: #6BBB2E;color: #FFF!important; border:1px solid #6BBB2E;text-decoration: none;font-family: Arial;display: inline-block;font-size: 12px;}
+.pager li.thisclass a{color: #FFF!important;border: 1px solid #6BBB2E;}
+.pager li a:hover{background: #6BBB2E;color: #FFF!important;text-decoration: none;font-family: Arial;display: inline-block;border: 1px solid #6BBB2E;}
+.pager li.thisclass a:hover{color: #6BBB2E;display: inline-block;border: 1px solid #6BBB2E;}
+.pager li a{color: #444;padding: 0px 10px;display: inline-block;border: 1px solid #CED0CB;font-size: 14px;}
+
+/*模拟分页*/
+.hot_page{float: left;width: 710px;height:50px;overflow: hidden;}
+.hao_page{clear: both; line-height: 30px; margin:5px auto;text-align: center;float:left;width:100%;height:30px;}
+.hao_page a{border: 1px solid #0090ff; color: #164a84; height:30px; line-height: 30px; margin-right: 5px; padding: 5px 10px; text-align: center;font-size: 16px;}
+.hao_page a.now{background: #efefef none repeat scroll 0 0; border: 0 none; color: #fff;}
+.hao_page a:hover, .hao_page a.now:hover{background: #0090ff none repeat scroll 0 0; color: #fff;}
+.hao_page span{background: #ebebeb none repeat scroll 0 0; border: 1px solid #ccc; padding: 4px 7px 2px;}
+.hao_page u b{background: #0090ff none repeat scroll 0 0; border: 1px solid #0090ff; color: #fff; height: 15px; line-height: 15px; padding: 6px 10px;font-size: 16px;}
+.hao_page u b:hover{text-decoration: none;}
+.hao_page u{margin-right: 5px; text-decoration: none;}
+.hao_page b{height: 15px; line-height: 15px; list-style: outside none none; padding: 4px 10px 2px;}
+
+/*点评*/
+.review{float: left;width: 100%;}
+.review h4{float: left;width: 100%;font: bold 14px/30px "宋体";color: #333;}
+
+/*right_wight*/
+.main_right{float: right;margin-top: 20px;text-align: left;width: 300px;}
+.main_right .hd{float: left;width: 100%;text-indent:3px;}
+.main_right .hd .tit{color: #1c2c58;font-size: 14px;font-weight: 700;}
+.main_right .bd{width: 100%;float: left;margin-bottom: 12px}
+.main_right .bd li{width: 100%;float: left;font-size: 14px;color: #444444;height: 26px;line-height: 26px;}
+.main_right .bd li a{color: #3665c3;font-size: 14px;float: none;margin: 0;padding: 0;}
+.main_right .bd a{margin: 2.3px;padding: 0px 6px;color: #666;font-size: 14px;float: left;}
+.y1{background:none repeat scroll 0 0 #ffeede}
+.y2{background:none repeat scroll 0 0 #e5f0ff}
+.y3{background:none repeat scroll 0 0 #fee}
+.y4{background:none repeat scroll 0 0 #e3ffeb}
+.y5{background:none repeat scroll 0 0 #f0dfff}
+.y6{background:none repeat scroll 0 0 #ffd9e3}
+
+/*推荐*/
+.tuijian{padding: 5px 0;margin: 0; clear:both}
+.tuijian li{padding: 3px 0 3px 25px;list-style-type: none;background: url("http://img.cnrencai.com/cms/jian.gif") no-repeat left center;font-size: 15px;line-height: 20px;}
+.tuijian li a{color: #0000cd;}
+
+/*页脚*/
+.footer{float:left;width:100%;margin-top:15px;background:#3c3d41;padding: 10px 0;}
+.footer p{text-align:center;line-height:24px;font-size:12px;color:#fff; float:left; width:100%}
+.footer p a{margin:0 8px;color:#fff}
+.footer p font{font-size:12px}
+
+/*点击量*/
+.count{line-height:30px;text-align:center;float:left;width:100%;color:#888;font-size:14px;background:#fff;padding-bottom: 10px;margin-top: 8px;}
+.count code {color: #cc1b1b;font: 21px/25px georgia;height: 25px;padding: 0 8px;line-height: 22px;display: inline-block;position: relative;top: 0px;}
+.dianzan{background:#fff;float: left;width: 100%;}
+.footact_next {padding: 3%;width: 94%;background:#fff}
+.footact_next span {width: 100%;float: left;line-height: 30px;color: #666;}
+.footact_next span a {color: #2b7bd1; font-size:16px}
+
+/*广告 */
+.ad_foot{margin:10px auto;width: 1058px;clear: both;text-align: center;}
+.ad_foot2{ clear:both; width:1058px; margin:0 auto;text-align: center;;margin-bottom: 5px;}
+.ad_right{margin-bottom:10px}
+.ad_top_left{float: left;margin-bottom:5px;text-align:center; width:100%}
+.ad_top_left2{float: left;margin-bottom:10px; text-align:center; width:100%}
+.blank1{float: left;clear: left;height: 130px;width: 1px; display:none;display:none}
+.ad_content_top{ margin-top:2px}
+.ad_nav{width: 1058px;clear: both;margin: auto;}
+.ad_top{width: 1058px;clear: both;margin: auto; padding-top:5px}
+.ad_mid,.ad_content{float:left; width:100%; margin-top:10px;}
+

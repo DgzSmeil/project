@@ -1,0 +1,95 @@
+
+
+ 
+
+
+
+
+
+
+<!doctype html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>登录</title>
+<script type="text/javascript">
+		var rootPath='';
+</script>
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+<link rel="stylesheet" type="text/css" href="/stylesheets/manage.css" />
+
+
+	<link rel="stylesheet" type="text/css" href="/stylesheets/login.css" />
+
+<link rel="stylesheet" type="text/css" href="/stylesheets/fatstyle.css" />
+<script type="text/javascript" src="/javascripts/plus/jquery.min.js"></script>
+<script type="text/javascript" src="/javascripts/plus/jquery.cookie.js"></script>
+</head>
+<body>
+	<!-- header start -->
+		<div class="header">
+			<a href="/" title="" class="navbar-brand"><img src="/images/logo-2.png" height="50"></a>
+		</div>
+	<!-- header end -->
+	<div class="main">
+		<div class="content">
+			<div class="caption" id="caption-login">
+				<div class="image"></div>
+			</div>
+			<div class="box">
+				<div class="panel login-panel">
+				<div class="login-title">
+					<h2 class="h6">机构登录</h2>
+				</div>
+				<form class="login-form" action="/login" method="post">
+					<div class="login-form1">
+						<span class="tips"></span>
+						<div class="c" style="margin-top:10px;">
+							<input type="text" id="username" name="username" class="input-ctrl" placeholder="用户名">
+						</div>
+						<div class="c">
+							<input type="password" id="password" name="password"  class="input-ctrl" placeholder="密码">
+						</div>
+						<div class="c none" id="codes">
+								<input type="text" id="checkcode" name="checkcode" value="" placeholder="图像验证码" class="code input-sm"> 
+								<span class="codeimg"></span><img class="iconfont rf" src="/images/refresh.png"/>
+						</div>
+						<div class="s remeber">
+								<span><input type="checkbox" id="rememberMe" name="rememberMe" value="1" checked=checked/> 记住我</span>
+								<a href="/users/findPwd" style="color: red; margin-left: 50px;">忘记密码?</a>
+						</div>
+						<div class="c">
+							<button type="submit" class="btn btn-primary btn-login"> 登录</button>
+						</div>
+						
+						<div class="c text">
+							<span>我没有账号，马上 </span><a href="/register/registerPage" class="chg-pup">注册</a>
+						</div>
+					</div>
+				</form>
+				</div>
+			</div>
+		</div>
+		<div class="bot">
+		
+		</div>
+	</div>
+	<!-- footer start -->
+	<footer class="footer">
+		<div class="u-wrap">
+			<p class="copyright">
+				Copyright © 2014-2017.北京昱新科技有限公司 版权所有 <a href="javascript:;">京ICP备15011506号</a>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;热线：400-965-8366（产品咨询）  400-965-7366（售后服务）
+			</p>
+		</div>
+	</footer>
+	<!-- 测试提交 -->
+	<!-- footer end -->
+	<script type="text/javascript" src="/javascripts/jquery.placeholder.min.js"></script>
+	<script  type="text/javascript" src="/javascripts/login.js"></script>
+	<script type="text/javascript" src="/plugins/jquery-validation/jquery.validate.js"></script>
+</body>
+</html>

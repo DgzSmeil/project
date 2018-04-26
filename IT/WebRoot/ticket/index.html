@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>jQuery征名投票代码</title>
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/script.js"  ></script>
+<script type="text/javascript">
+$(document).ready(function () {
+	$(".artist_l li .cvote").click(function () {
+		var nowdo = $(this);
+		var baby = nowdo.parent().parent().find(".tag_txt").html();
+		var nowvote = nowdo.parent().find(".cvotenum b").html();
+		nowdo.parent().find(".cvotenum b").html(parseInt(nowvote) + 1);
+		alert("亲！您为征名【" + baby + "】投了一票！谢谢您的投票！");
+
+	});
+});
+</script>
+
+</head>
+<body style=" background-color:#cb0000">
+<div class="itagBox">
+	<ul class="artist_l">
+		<li class="tag1">
+           <div class="votetext">
+			<div class="tag_txt">
+			  征名1 
+			</div>
+			<a href="#"> 
+             征名释义：征名1
+            </a>
+            </div>
+            <div class="votedo">
+              <div class="cvotenum"><b>1002</b>票</div>
+              <div class="cvote">投票</div>
+            </div>
+		</li>
+		<li class="tag1 ">
+          <div class="votetext">
+			<div class="tag_txt">
+			  征名2
+			</div>
+			<a href="#"> 
+             征名释义：征名2
+            </a>
+           </div> <div class="votedo">
+              <div class="cvotenum"><b>1003</b>票</div>
+              <div class="cvote">投票</div>
+            </div>
+		</li>
+		<li class="tag1"> <div class="votetext">
+			<div class="tag_txt">
+			 征名3
+			</div>
+			<a href="#">征名释义：征名3</a>
+             </div>
+             <div class="votedo">
+              <div class="cvotenum"><b>1004</b>票</div>
+              <div class="cvote">投票</div>
+            </div>
+		</li>
+		<li class="tag1 "> <div class="votetext">
+			<div class="tag_txt">
+			征名4
+			</div>
+			<a href="#">征名4</a>
+             </div> <div class="votedo">
+              <div class="cvotenum"><b>1005</b>票</div>
+              <div class="cvote">投票</div>
+            </div>
+		</li>
+		<li class="tag1"> <div class="votetext">
+			<div class="tag_txt">
+			 征名5
+			</div>
+			<a href="#">征名释义：征名5</a>
+             </div> <div class="votedo">
+              <div class="cvotenum"><b>1045</b>票</div>
+              <div class="cvote">投票</div>
+            </div>
+		</li>
+		<li class="tag1"> <div class="votetext">
+			<div class="tag_txt">
+			 征名6
+			</div>
+			<a href="#">征名释义：征名6</a>
+             </div> <div class="votedo">
+              <div class="cvotenum"><b>1008</b>票</div>
+              <div class="cvote">投票</div>
+            </div>
+		</li>
+		<li class="tag1"> <div class="votetext">
+			<div class="tag_txt">
+			 征名7
+			</div>
+			<a href="#">征名释义：征名7</a>
+             </div> <div class="votedo">
+              <div class="cvotenum"><b>1009</b>票</div>
+              <div class="cvote">投票</div>
+            </div>
+		</li>
+		<li class="tag1 "> <div class="votetext">
+			<div class="tag_txt">
+		    	征名8
+			</div>
+			<a href="#">征名释义：征名8</a>
+             </div> <div class="votedo">
+              <div class="cvotenum"><b>1006</b>票</div>
+              <div class="cvote">投票</div>
+            </div>
+		</li>
+		<li class="tag1"> <div class="votetext">
+			<div class="tag_txt">
+			征名9
+			</div>
+			<a href="#">征名释义：征名9</a>
+             </div> <div class="votedo">
+              <div class="cvotenum"><b>1008</b>票</div>
+              <div class="cvote">投票</div>
+            </div>
+		</li>
+		<li class="tag1 "> <div class="votetext">
+			<div class="tag_txt">
+			 征名10
+			</div>
+			<a href="#">征名释义：征名10</a>
+             </div> <div class="votedo">
+              <div class="cvotenum"><b>1002</b>票</div>
+              <div class="cvote">投票</div>
+            </div>
+		</li>
+		<li class="tag1 "> <div class="votetext">
+			<div class="tag_txt">
+			 征名11
+			</div>
+			<a href="#">征名释义：征名11</a>
+             </div> <div class="votedo">
+              <div class="cvotenum"><b>1012</b>票</div>
+              <div class="cvote">投票</div>
+            </div>
+		</li>
+        <li class="tag1 "> <div class="votetext">
+			<div class="tag_txt">
+			 征名12
+			</div>
+			<a href="#">征名释义：征名12</a>
+             </div> <div class="votedo">
+              <div class="cvotenum"><b>1202</b>票</div>
+              <div class="cvote">投票</div>
+            </div>
+		</li>
+	</ul>
+</div>
+<div style="text-align:center;">
+</div>
+
+</body>
+</html>

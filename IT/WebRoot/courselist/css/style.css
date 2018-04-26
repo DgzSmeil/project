@@ -1,0 +1,81 @@
+*{
+	margin:10;
+	padding:0;
+}
+body{
+	font-family:"microsoft yahei",Arial;
+}
+a{
+	text-decoration:none;
+}
+.box{
+	width:720px;
+	height:560px;
+	background:#ddd;
+	margin:20px auto;
+	padding:20px;
+
+}
+.box .title span{
+	fontsize:18px;
+	color:#333;
+
+}
+.box .title a{
+	float:right;
+	color:#666;
+	font-size:14px;
+	
+
+}
+.box .title a:hover{
+	color:red;
+	
+
+}
+.box ul li {
+	width:160px;
+	height:240px;
+	list-style:none;
+	position:relative;
+	float:left;
+	margin-right:20px;
+	margin-button:20px;
+	overflow:hidden;
+}
+.box ul li .info{
+	width:160px;
+	height:240px;
+	background:rgba(0,0,0,0.7);
+	position:absolute;
+	top:-240px;
+	transition:all 0.3s ease;
+
+}
+.box ul li .info h2{
+	font-size:20px;
+	color:#fff;
+	text-align:center;
+	padding-top:50px;
+}
+.box ul li .info p{
+	font-size:14px;
+	color:#fff;
+	text-align:center;
+	margin:30px auto;
+	padding:0 10px;
+}
+.box ul li .info a{
+	width:100px;
+	height:36px;
+	background:red;
+	display:block;
+	font-size:18px;
+	color:#fff;
+	line-height:36px;
+	text-align:center;
+	margin:0 auto;
+}
+.box ul li:hover .info{
+	top:0;
+} 

@@ -1,0 +1,56 @@
+.fl {float: left;}.fr {float: right;}
+.GenTopHeader {border-bottom: 1px solid #fff;position: relative;z-index: 99999;height: 45px;line-height: 45px;background-color: #EDEDED;color:#424242;font-size: 14px;font-family: '微软雅黑';transition:margin 1s;margin-top:-37px;font-size: 12px;}
+.GenTopHeader .Page {height: 45px;}
+.GenTopHeader li    {position: relative;cursor: default;}
+.GenTopHeader li.fl   {text-align: left;}
+.GenTopHeader li.fr a{display: block;position: relative;}
+.GenTopHeader li.fr{margin-left: 25px;}
+.GenTopHeader li#TopCart    {margin-left: 30px;}
+.GenTopHeader li.apps   {width: 52px;text-align: center;}
+.GenTopHeader li.apps ul {position: absolute;width: 80px;top:45px;background: #EDEDED;left: -15px;text-align: center;line-height: 30px;display: none;}
+.GenTopHeader li.apps:hover ul  {display: block;}
+    .GenTopHeader .apps a   {display: block;}
+        .GenTopHeader .apps a:hover {background: #FFF;}
+.GenTopHeader .navi{background: url(../index/images/topicon.png) no-repeat right 18px;padding-right: 20px;position: relative;margin-right: 2px;}
+.GenTopHeader .navi:hover{background-position: right -70px;color: #242424;cursor: default;}
+.GenTopHeader .navi .navigates    {width: 100px;text-align: center;line-height: 30px;position: absolute;top:45px;right: -12px;background-color: #EDEDED;display: none;}
+.GenTopHeader .navi .navigates a  {display: block;}
+.GenTopHeader .navi .navigates a:hover    {background-color: #FFF;}
+.GenTopHeader .navi:hover .navigates  {display: block;}
+.GenTopHeader #TopCart a span   {height: 15px;line-height:15px;padding:0px 4px;margin-left:5px;display: inline-block;background: #c01920;color:#FFF;border-radius: 3px;}
+.GenTopHeader #TopCart a span   {*display: inline;}
+.GenTopHeader .client{padding-left: 20px;background: url(../index/images/icon.png) no-repeat -6px -50px;}
+.GenTopHeader .client:hover{background-position:-6px 11px;}
+.GenTopHeader li.fr a.out{float: left;padding-left: 5px;margin:0;color: #a4a4a4;}
+#newDot{ width:7px; height:7px; position:absolute; left:28px; top:10px;*top:0px; background:url(../index/images/reddot.png) no-repeat 0 0; display:none;}
+.clearfix:after { content: ".";display: block;height: 0;clear: both;visibility: hidden; } 
+.GenTopHeader a {color: #424242;}
+.GenTopHeader a:hover {color: #000;}
+a.red {color: #c01920;}
+a:hover.red{color: #950b11;}
+
+.GenTopHeader li .StudyLog {position: absolute;top:45px;left:-10px;width:200px;background: #EDEDED;display: none;text-indent: 10px;}
+.GenTopHeader li:hover .StudyLog  {display: block;}
+  .GenTopHeader li .StudyLog li {line-height: 36px;overflow: hidden;}
+  .GenTopHeader li .StudyLog li:hover {background-color: #FFF;}
+    .GenTopHeader li .StudyLog li a.fl  {width: 110px;padding-right:10px;height:36px;overflow: hidden;}
+    .GenTopHeader li .StudyLog li a.fr  {display: none;}
+    .GenTopHeader li .StudyLog li a.fr,
+    .GenTopHeader li .StudyLog li span.fr  {width: 80px;overflow: hidden;text-indent: 0px;}
+    .GenTopHeader li .StudyLog li:hover a.fr  {display: block;}
+    .GenTopHeader li .StudyLog li:hover span.fr  {display: none;}
+    .GenTopHeader li .StudyLog p  {border-top: 1px solid #DDD;line-height: 26px;}
+    .GenTopHeader li .StudyLog h2 {font-weight: bold;text-indent: 0;line-height: 1;padding-top: 25px;}
+    .GenTopHeader li .StudyLog h3,
+    .GenTopHeader li .StudyLog h5 {font-size: 12px;padding-right: 10px;font-weight: normal;}
+    .GenTopHeader li .StudyLog h2,
+    .GenTopHeader li .StudyLog h3 {line-height: 2;}
+    .GenTopHeader li .StudyLog h3 {padding-bottom: 25px;}
+    .GenTopHeader li .StudyLog h4 {border-top: 1px solid #DDD;font-weight: normal;line-height: 30px;padding-top: 5px;text-align: left;}
+    .GenTopHeader li .StudyLog h5 {line-height: 30px;text-align: left;}
+    .GenTopHeader li .StudyLog h5:hover {background-color: #FFF;}
+
+.ellipsis {text-overflow: ellipsis;overflow: hidden;white-space:nowrap;}
+#SearchTypeChange {z-index:101;}
+    #SearchTypeChange li    {cursor: default;line-height: 24px;text-indent: 5px;}
+.SearchTypeChangeCur    {background: #F1F1F1;}

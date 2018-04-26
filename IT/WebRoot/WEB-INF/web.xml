@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4" 
+	xmlns="http://java.sun.com/xml/ns/j2ee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  <filter>
+		<filter-name>FilterEncoding</filter-name>
+		<filter-class>Filter.FilterEncoding</filter-class>
+		<init-param>
+			 <param-name>config</param-name>
+			 <param-value>utf-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>FilterEncoding</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>cityservlet</servlet-name>
+		<servlet-class>SQLservlet.cityservlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>cityservlet</servlet-name>
+		<url-pattern>/cityservlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>provinceservlet</servlet-name>
+		<servlet-class>SQLservlet.provinceservlet</servlet-class>
+	</servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>greadservlet</servlet-name>
+    <servlet-class>SQLservlet.greadservlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>managerservlet</servlet-name>
+    <servlet-class>SQLservlet.managerservlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Studentservlet</servlet-name>
+    <servlet-class>SQLservlet.Studentservlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Activeservlet</servlet-name>
+    <servlet-class>SQLservlet.Activeservlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Courseservlet</servlet-name>
+    <servlet-class>SQLservlet.Courseservlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Teacherservlet</servlet-name>
+    <servlet-class>SQLservlet.Teacherservlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Fileservlet</servlet-name>
+    <servlet-class>SQLup.Fileservlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Videoservlet</servlet-name>
+    <servlet-class>SQLup.Videoservlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Loginservlet</servlet-name>
+    <servlet-class>SQLservlet.Loginservlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Sectionservlet</servlet-name>
+    <servlet-class>SQLservlet.Sectionservlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Moneyservlet</servlet-name>
+    <servlet-class>SQLservlet.Moneyservlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Courselistservlet</servlet-name>
+    <servlet-class>SQLservlet.Courselistservlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Newmsgservlet</servlet-name>
+    <servlet-class>SQLservlet.Newmsgservlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>payrecodeservlet</servlet-name>
+    <servlet-class>SQLservlet.payrecodeservlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Mainservlet</servlet-name>
+    <servlet-class>SQLservlet.Mainservlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Exchangecodeservlet</servlet-name>
+    <servlet-class>SQLservlet.Exchangecodeservlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Student</servlet-name>
+    <servlet-class>JSPservlet.Student</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>cheshiservlet</servlet-name>
+    <servlet-class>SQLservlet.cheshiservlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>img</servlet-name>
+    <servlet-class>SQLservlet.Img</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>VIPServlet</servlet-name>
+    <servlet-class>SQLservlet.VIPServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>huiyuanservlet</servlet-name>
+    <servlet-class>SQLservlet.huiyuanservlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>myinfoservlet</servlet-name>
+    <servlet-class>SQLservlet.myinfoservlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Fileup</servlet-name>
+    <servlet-class>SQLup.Fileup</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>API</servlet-name>
+    <servlet-class>SQLservlet.API</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>FindCourselist</servlet-name>
+    <servlet-class>SQLservlet.FindCourselist</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>Refundservlet</servlet-name>
+    <servlet-class>SQLservlet.Refundservlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>chatservlet</servlet-name>
+    <servlet-class>SQLservlet.chatservlet</servlet-class>
+  </servlet>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<servlet-mapping>
+		<servlet-name>img</servlet-name>
+		<url-pattern>/img</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet-mapping>
+		<servlet-name>provinceservlet</servlet-name>
+		<url-pattern>/provinceservlet</url-pattern>
+	</servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>greadservlet</servlet-name>
+    <url-pattern>/greadservlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>managerservlet</servlet-name>
+    <url-pattern>/managerservlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Studentservlet</servlet-name>
+    <url-pattern>/studentservlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Activeservlet</servlet-name>
+    <url-pattern>/activeservlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Courseservlet</servlet-name>
+    <url-pattern>/courseservlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Teacherservlet</servlet-name>
+    <url-pattern>/teacherservlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Fileservlet</servlet-name>
+    <url-pattern>/fileservlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Videoservlet</servlet-name>
+    <url-pattern>/videoservlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Loginservlet</servlet-name>
+    <url-pattern>/loginservlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Sectionservlet</servlet-name>
+    <url-pattern>/sectionservlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Moneyservlet</servlet-name>
+    <url-pattern>/moneyservlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Courselistservlet</servlet-name>
+    <url-pattern>/courselistservlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Newmsgservlet</servlet-name>
+    <url-pattern>/newmsgservlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>payrecodeservlet</servlet-name>
+    <url-pattern>/payrecodeservlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Mainservlet</servlet-name>
+    <url-pattern>/mainservlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Exchangecodeservlet</servlet-name>
+    <url-pattern>/exchangecodeservlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Student</servlet-name>
+    <url-pattern>/student</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>cheshiservlet</servlet-name>
+    <url-pattern>/cheshiservlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>VIPServlet</servlet-name>
+    <url-pattern>/vipservlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>huiyuanservlet</servlet-name>
+    <url-pattern>/huiyuanservlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>myinfoservlet</servlet-name>
+    <url-pattern>/myinfoservlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Fileup</servlet-name>
+    <url-pattern>/fileup</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>API</servlet-name>
+    <url-pattern>/apiservlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>FindCourselist</servlet-name>
+    <url-pattern>/findcourselistservlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Refundservlet</servlet-name>
+    <url-pattern>/refundservlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>chatservlet</servlet-name>
+    <url-pattern>/chatservlet</url-pattern>
+  </servlet-mapping>
+  <error-page>
+  	<error-code>500</error-code>
+  	<location>/error.jsp</location>
+  </error-page>
+  <error-page>
+  	<error-code>404</error-code>
+  	<location>/error.jsp</location>
+  </error-page>
+  <error-page>
+  	<error-code>400</error-code>
+  	<location>/error.jsp</location>
+  </error-page>
+</web-app>

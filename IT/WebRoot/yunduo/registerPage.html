@@ -1,0 +1,113 @@
+
+
+ 
+
+
+
+
+
+
+<!doctype html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>机构注册</title>
+<script type="text/javascript">
+		var rootPath='';
+</script>
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+<link rel="stylesheet" type="text/css" href="/stylesheets/manage.css" />
+<link rel="stylesheet" type="text/css" href="/stylesheets/register.css" />
+<link rel="stylesheet" type="text/css" href="/stylesheets/fatstyle.css" />
+<script type="text/javascript" src="/javascripts/plus/jquery.min.js"></script>
+<script type="text/javascript" src="/javascripts/plus/jquery.cookie.js"></script>
+</head>
+<body>
+	<!-- header start -->
+		<div class="header">
+			<a href="/" title="" class="navbar-brand"><img src="/images/logo-2.png" height="50"></a>
+		</div>
+	<!-- header end -->
+	<div class="main">
+		<div class="content">
+			<div class="caption" id="caption-register">
+				<div class="text">
+					<h3 style="padding-bottom: 0;">10 秒注册完成 5分钟网校上线</h3>
+					<p style="padding-bottom: 15px;">&nbsp;创建独立的品牌, 可绑定自主域名, 注册直接可用</p>
+					<h4>多种终端覆盖抢占用户市场</h4>
+					<p>支持PC、TV客户端、手机APP、微信网校在线授课</p>
+					<h4>免费体验在线教育全部功能</h4>
+					<p>报名交易 在线授课 考试题库 社区答疑 教学运营</p>
+				</div>
+				<div class="image"></div>
+			</div>
+			<div class="box">
+				<div class="panel register-panel">
+				<div class="login-title">
+					<h2 class="h6">机构注册</h2>
+				</div>
+				<form class="login-form" action="/register" method="post" id="registerForm">
+					<div class="login-form1">
+						<input type="hidden" id="utm_source" name="utm_source" value="n"/>
+						<input type="hidden" id="utm_medium" name="utm_medium" value=""/>
+						<input type="hidden" id="utm_term" name="utm_term" value=""/>
+						<input type="hidden" id="utm_content" name="utm_content" value=""/>
+						<input type="hidden" id="utm_campaign" name="utm_campaign" value=""/>
+						<input type="hidden" id="utm_url" name="utm_url" value=""/>
+						<span class="tips"></span>
+						<p class="c">
+								<input type="text" id="username" name="username" class="input-ctrl" placeholder="用户名" maxlength="16">
+						</p>
+						<p class="c">
+								<input type="password" id="password" name="password"  class="input-ctrl" placeholder="密码" maxlength="16">
+						</p>
+						<p class="c">
+								<input type="text" id="mobile" name="mobile"  class="input-ctrl" placeholder="手机号" maxlength="11">
+						</p>
+						<p class="c">
+								<input type="text" id="checkcode" name="checkcode" value="" placeholder="图形验证码" class="code input-sm" maxlength="6"> 
+								<span class="codeimg"></span><img class="iconfont rf" src="/images/refresh.png"/>
+						</p>
+						<p class="c msg-code">
+								<input type="text" class="input-sm" id="smscode" name="smscode" value="" placeholder="短信验证码" class="code" maxlength="6">
+								<button class="btn btn-sm" id="btn-sms" disabled="disabled">获取验证码</button> 
+						</p>
+						<p class="s text">
+							<input type="checkbox" checked="checked" id="checks"> 同意 
+							<a class="btn-link" href="/register/registerService/ser" target="_blank">用户协议</a> 
+							和 <a class="btn-link" href="/register/registerService/piva" target="_blank">法律声明</a>
+						</p>
+						<p class="c">
+							<button type="button" id="register_submit" class="btn btn-login" > 注册</button>
+						</p>
+						<p class="c text">
+							<span>我已经注册，直接 </span><a href="/login" class="chg-pup">登录</a>
+						</p>
+						
+					</div>
+				</form>
+			</div>
+			</div>
+		</div>
+		<div class="bot">
+		
+		</div>
+	</div>
+	<!-- footer start -->
+	<footer class="footer">
+		<div class="u-wrap">
+			<p class="copyright">
+				Copyright © 2014-2017.北京昱新科技有限公司 版权所有 <a href="javascript:;">京ICP备15011506号</a>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;热线：400-965-8366（产品咨询）  400-965-7366（售后服务）
+			</p>
+		</div>
+	</footer>
+	<!-- footer end -->
+		<script type="text/javascript" src="/javascripts/jquery.placeholder.min.js"></script>
+	<script type="text/javascript" src="/plugins/jquery-validation/jquery.validate.js"></script>
+	<script type="text/javascript" src="/javascripts/checkregister1.js"></script>
+</body>
+</html>
